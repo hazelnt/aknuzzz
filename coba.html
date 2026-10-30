@@ -1,0 +1,3428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akar Nusa – Nurturing the future</title>
+  <link rel="icon" type="image/png" href="bird.png" />
+  <style>
+    /* ---------- RESET & BASE ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+      scroll-behavior: smooth;
+    }
+    body {
+      background: #f5f5f5;
+    }
+
+    /* ---------- NAVBAR ---------- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 80px;
+      transition: 0.4s;
+      z-index: 1000;
+    }
+    nav.scrolled {
+      background: white;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 15px 80px;
+    }
+    .logo a {
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.4s;
+    }
+    .logo img {
+      height: 45px;
+      width: auto;
+      display: block;
+    }
+    nav.scrolled .logo a {
+      color: #2c3e50;
+    }
+    nav.scrolled .logo {
+      color: #2c3e50;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    nav ul li {
+      margin-left: 30px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    nav.scrolled ul li a {
+      color: #2c3e50;
+    }
+    nav ul li a:hover {
+      color: #00c896;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 0;
+      isolation: isolate;
+    }
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0);
+    }
+
+
+    /* ---------- ABOUT ---------- */
+    section {
+      padding: 100px 10%;
+    }
+    h2 {
+      margin-bottom: 20px;
+      font-size: 40px;
+    }
+    .about-container {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+    .about-image {
+      flex: 1;
+    }
+    .about-image img {
+      width: 100%;
+      max-width: 450px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    .about-text {
+      flex: 1;
+    }
+    .about-text h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      color: #1F6E43;
+    }
+    .about-text p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #555;
+    }
+    .about-text b {
+      color: #1F6E43;
+    }
+    .mint {
+      color: #24eb9b;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .blue {
+      color: #3f9ec0;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .rainbow {
+      background: linear-gradient(90deg, #FF6B6B, #FFD93D, #6BCB77, #4D96FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .green {
+      color: #51d337;
+      text-decoration: none;
+      font-weight: bold;
+    }
+/* ---------- ACTIVITIES ---------- */
+
+.activities {
+  padding: 0 5% 60px;
+  margin-top: -70px;
+  background: #F8F6F1;
+  overflow: hidden;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.section-title h2 {
+  font-size: 42px;
+  color: #1F6E43;
+  margin-bottom: 6px;
+}
+
+.section-title p {
+  color: #666;
+  font-size: 18px;
+}
+
+
+/* ---------- COVERFLOW ---------- */
+
+.coverflow {
+  position: relative;
+  width: 100%;
+  height: 330px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+  overflow: hidden;
+}
+
+.coverflow .card {
+  position: absolute;
+  width: 210px;
+  height: 280px;
+
+  /* BIKIN SUDUT BULAT */
+  border-radius: 20px;
+  overflow: hidden;
+
+  cursor: pointer;
+
+  /* PERPINDAHAN LEBIH CEPAT */
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease,
+    filter 0.35s ease;
+     will-change: transform, opacity, filter;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* GAMBAR */
+.coverflow .card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+}
+
+
+/* ACTIVE */
+.coverflow .card.active {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+  z-index: 3;
+  filter: blur(0);
+  pointer-events: auto;
+}
+
+
+/* ACTIVE SAAT MOUSE DI ATAS */
+.coverflow .card.active:hover {
+  transform: translateX(0) scale(1.05);
+}
+
+
+/* KIRI */
+.coverflow .card.left {
+  transform: translateX(-210px) scale(0.82);
+  opacity: 0.45;
+  z-index: 2;
+  filter: blur(2px);
+  pointer-events: auto;
+}
+
+.coverflow .card.right {
+  transform: translateX(210px) scale(0.82);
+  opacity: 0.45;
+  z-index: 2;
+  filter: blur(2px);
+  pointer-events: auto;
+}
+
+/* CARD LAINNYA */
+.coverflow .card:not(.active):not(.left):not(.right) {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+
+/* INFO DI BAWAH */
+.activity-info {
+  width: 75%;
+  margin: 5px auto 0;
+  text-align: center;
+}
+
+.activity-info h3 {
+  font-size: 34px;
+  color: #1F6E43;
+  margin-bottom: 8px;
+}
+
+.activity-info p {
+  font-size: 18px;
+  color: #666;
+  line-height: 1.5;
+}
+
+    /* ---------- OVERLAY (diperbaiki sesuai contoh) ---------- */
+    .activity-overlay {
+    z-index: 12000;
+      position: fixed !important;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      z-index: 30000;
+    }
+    .activity-overlay.show {
+      display: flex;
+      animation: fadeOverlay 0.35s ease;
+    }
+    @keyframes fadeOverlay {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    @keyframes popup {
+      from {
+        transform: scale(0.92) translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .activity-window {
+      position: relative;
+      width: 95%;
+      max-width: 1200px;
+      max-height: 92vh;
+      background: #ffffff;
+      border-radius: 34px;
+      display: flex;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+      animation: popup 0.4s ease;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 28px;
+      font-weight: 300;
+      cursor: pointer;
+      transition: 0.3s;
+      z-index: 10;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .close-btn:hover {
+      background: #1F6E43;
+      color: white;
+      transform: rotate(90deg);
+    }
+
+    /* LEFT SIDE - GALLERY */
+    .overlay-left {
+      flex: 1.2;
+      background: #f8f6f1;
+      padding: 30px 30px 30px 30px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-image {
+      flex: 1;
+      min-height: 0;
+    }
+    .main-image img {
+      width: 100%;
+      height: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 18px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+      transition: opacity 0.2s;
+    }
+    .main-image img.change {
+      opacity: 0.5;
+    }
+
+    .thumbnail-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+    .thumbnail-container img {
+      width: 72px;
+      height: 72px;
+      object-fit: cover;
+      border-radius: 12px;
+      cursor: pointer;
+      opacity: 0.5;
+      border: 3px solid transparent;
+      transition: 0.3s;
+    }
+    .thumbnail-container img:hover {
+      opacity: 0.8;
+      transform: scale(1.04);
+    }
+    .thumbnail-container img.active {
+      opacity: 1;
+      border-color: #1F6E43;
+      transform: scale(1.05);
+    }
+
+    /* RIGHT SIDE - CONTENT */
+    .overlay-right {
+      flex: 1;
+      padding: 40px 45px 40px 40px;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      background: #ffffff;
+    }
+
+    .program-label {
+      display: inline-block;
+      background: #eaf6ef;
+      color: #1F6E43;
+      padding: 6px 18px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+      width: max-content;
+      text-transform: uppercase;
+    }
+
+    .overlay-right h2 {
+      font-size: 38px;
+      color: #1F6E43;
+      margin-bottom: 14px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .overlay-right .description {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 6px;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: #e7e7e7;
+      margin: 24px 0 20px 0;
+    }
+
+    .overlay-right h3 {
+      color: #1F6E43;
+      font-size: 18px;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .overlay-right ul {
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+    }
+    .overlay-right ul li {
+      margin-bottom: 6px;
+      color: #444;
+      font-size: 15px;
+      position: relative;
+      padding-left: 22px;
+      line-height: 1.6;
+    }
+    .overlay-right ul li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: #1F6E43;
+      font-size: 14px;
+    }
+
+    .info-card {
+      flex: 1;
+      background: #f8f6f1;
+      padding: 16px 20px;
+      border-radius: 14px;
+    }
+    .info-card h4 {
+      color: #1F6E43;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-bottom: 4px;
+    }
+    .info-card p {
+      color: #333;
+      font-size: 16px;
+      font-weight: 600;
+    }
+/* =====================================================
+   DEPARTMENT SECTION
+===================================================== */
+
+.department-section {
+    padding: 100px 7%;
+    background: #f7f8f3;
+}
+
+.department-heading {
+    max-width: 700px;
+    margin-bottom: 50px;
+}
+
+.department-heading > span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #65806b;
+}
+
+.department-heading h2 {
+    margin: 12px 0 20px;
+
+    font-size: clamp(40px, 5vw, 65px);
+    line-height: .95;
+
+    color: #1f3025;
+}
+
+.department-heading h2 em {
+    font-style: normal;
+    color: #65806b;
+}
+
+.department-heading p {
+    max-width: 600px;
+
+    color: #707771;
+
+    line-height: 1.8;
+}
+
+
+
+/* =====================================================
+   CARD GRID
+===================================================== */
+
+.department-card-grid {
+    display: grid;
+
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+
+    gap: 15px;
+
+    width: 100%;
+}
+
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.department-card {
+    height: 300px;
+
+    perspective: 1200px;
+
+    cursor: pointer;
+}
+
+.department-card-inner {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform .75s cubic-bezier(.2,.7,.2,1);
+}
+
+.department-card:hover .department-card-inner {
+    transform: rotateY(180deg);
+}
+
+
+
+/* =====================================================
+   FRONT + BACK
+===================================================== */
+
+.department-card-front,
+.department-card-back {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+
+
+/* =====================================================
+   FRONT
+===================================================== */
+
+.department-card-front {
+    display: flex;
+
+    flex-direction: column;
+
+    background: #ffffff;
+}
+
+
+
+/* IMAGE */
+
+.department-card-image {
+    height: 62%;
+
+    overflow: hidden;
+}
+
+.department-card-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform .6s ease;
+}
+
+.department-card:hover
+.department-card-image img {
+    transform: scale(1.06);
+}
+
+
+
+/* INFO */
+
+.department-card-info {
+    flex: 1;
+
+    padding: 13px 15px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.department-card-number {
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    opacity: .55;
+}
+
+.department-card-info h3 {
+    margin: 4px 0 3px;
+
+    font-size: 18px;
+
+    line-height: 1.1;
+
+    color: var(--department-color);
+}
+
+.department-card-info p {
+    margin: 0;
+
+    font-size: 10px;
+
+    line-height: 1.4;
+
+    color: #777d78;
+}
+
+
+
+/* =====================================================
+   BACK
+===================================================== */
+
+.department-card-back {
+    padding: 23px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    color: #ffffff;
+
+    background: var(--department-color);
+
+    transform: rotateY(180deg);
+}
+
+.department-card-back .department-card-number {
+    opacity: .65;
+}
+
+.department-card-back h3 {
+    margin: auto 0 10px;
+
+    font-size: 25px;
+
+    line-height: 1;
+}
+
+.department-card-back p {
+    margin: 0 0 auto;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+    opacity: .9;
+}
+
+.department-card-click {
+    margin-top: 20px;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.3px;
+
+    opacity: .75;
+}
+
+
+
+/* =====================================================
+   DEPARTMENT COLORS
+===================================================== */
+
+.department-card-green {
+    --department-color: #3fae5c;
+}
+
+.department-card-blue {
+    --department-color: #3f9ec0;
+}
+
+.department-card-mint {
+    --department-color: #24eb9b;
+}
+
+.department-card-rainbow {
+    --department-color: #4D96FF;
+}
+
+.department-card-rainbow .department-card-info h3 {
+    background: linear-gradient(90deg, #FF6B6B, #FFD93D, #6BCB77, #4D96FF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.department-card-rainbow .department-card-back {
+    background: linear-gradient(120deg, #FF6B6B, #FFD93D, #6BCB77, #4D96FF);
+}
+
+.department-card-pink {
+    --department-color: #c96b8d;
+}
+
+/* EARTHY */
+.department-card-earth {
+    --department-color: #81745a;
+}
+
+
+
+/* =====================================================
+   DEPARTMENT PROFILE MODAL
+===================================================== */
+
+.department-profile-modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: .35s ease;
+}
+
+.department-profile-modal.active {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+
+/* BACKDROP */
+
+.department-profile-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(15, 25, 19, .75);
+
+    backdrop-filter: blur(10px);
+}
+
+
+
+/* WINDOW */
+
+.department-profile-window {
+    position: relative;
+
+    z-index: 2;
+
+    width: min(1100px, 100%);
+
+    max-height: 92vh;
+
+    overflow-y: auto;
+
+    padding: 55px;
+
+    border-radius: 30px;
+
+    background: #f8f8f3;
+
+    transform: translateY(30px) scale(.96);
+
+    transition:
+        transform .4s cubic-bezier(.2,.7,.2,1);
+}
+
+.department-profile-modal.active
+.department-profile-window {
+    transform: translateY(0) scale(1);
+}
+
+
+
+/* CLOSE */
+
+.department-profile-close {
+    position: absolute;
+
+    top: 22px;
+    right: 22px;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #e9ebe5;
+
+    color: #26372c;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.department-profile-close:hover {
+    transform: rotate(90deg);
+}
+
+
+
+/* =====================================================
+   MODAL HEADER
+===================================================== */
+
+.department-profile-header {
+    max-width: 750px;
+
+    padding-bottom: 35px;
+}
+
+.department-profile-header > span {
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    color: #65806b;
+}
+
+.department-profile-header h2 {
+    margin: 10px 0 15px;
+
+    font-size: clamp(40px, 6vw, 70px);
+
+    line-height: .95;
+
+    color: #1f3025;
+}
+
+.department-profile-header p {
+    max-width: 650px;
+
+    margin: 0;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    color: #68706b;
+}
+
+
+
+/* =====================================================
+   SECTION HEADINGS
+===================================================== */
+
+.department-profile-section-heading {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+}
+
+.department-profile-section-heading span {
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: #8b918d;
+}
+
+.department-profile-section-heading h3 {
+    margin: 0;
+
+    font-size: 19px;
+
+    color: #26372c;
+}
+
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.department-profile-manager,
+.department-profile-team,
+.department-profile-about,
+.department-profile-programs {
+    margin-top: 38px;
+}
+
+
+
+/* =====================================================
+   PROJECT MANAGER
+===================================================== */
+
+.department-manager-card {
+    display: grid;
+
+    grid-template-columns: 190px 1fr;
+
+    min-height: 190px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: #e9ede5;
+}
+
+.department-manager-image {
+    height: 190px;
+}
+
+.department-manager-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.department-manager-content {
+    padding: 28px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.department-manager-content > span {
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: #65806b;
+}
+
+.department-manager-content h4 {
+    margin: 7px 0;
+
+    font-size: 28px;
+
+    color: #24352a;
+}
+
+.department-manager-content p {
+    max-width: 600px;
+
+    margin: 0;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    color: #68706b;
+}
+
+
+
+/* =====================================================
+   MEMBERS
+===================================================== */
+
+.department-member-list {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 15px;
+}
+
+.department-member-card {
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    background: #eef0ea;
+}
+
+.department-member-image {
+    aspect-ratio: 1 / 1;
+
+    overflow: hidden;
+}
+
+.department-member-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform .4s ease;
+}
+
+.department-member-card:hover
+.department-member-image img {
+    transform: scale(1.05);
+}
+
+.department-member-info {
+    padding: 14px;
+}
+
+.department-member-info h4 {
+    margin: 0 0 4px;
+
+    font-size: 14px;
+
+    color: #26372c;
+}
+
+.department-member-info span {
+    font-size: 9px;
+
+    color: #7c837e;
+}
+
+
+
+/* =====================================================
+   ABOUT
+===================================================== */
+
+.department-profile-about {
+    padding: 32px 0;
+
+    border-top: 1px solid #dfe2dc;
+
+    border-bottom: 1px solid #dfe2dc;
+}
+
+.department-profile-about p {
+    max-width: 800px;
+
+    margin: 0;
+
+    font-size: 14px;
+
+    line-height: 1.9;
+
+    color: #68706b;
+}
+
+
+
+/* =====================================================
+   PROGRAMS
+   2 COLUMNS
+===================================================== */
+
+.department-program-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+
+/* PROGRAM CARD */
+
+.department-program-card {
+    display: grid;
+
+    grid-template-columns: 42% 58%;
+
+    min-height: 175px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background: #eef0ea;
+
+    text-decoration: none;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.department-program-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.08);
+}
+
+
+
+/* PROGRAM IMAGE */
+
+.department-program-image {
+    min-height: 175px;
+
+    overflow: hidden;
+}
+
+.department-program-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform .4s ease;
+}
+
+.department-program-card:hover
+.department-program-image img {
+    transform: scale(1.05);
+}
+
+
+
+/* PROGRAM INFO */
+
+.department-program-info {
+    padding: 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.department-program-info h4 {
+    margin: 0 0 7px;
+
+    font-size: 18px;
+
+    color: var(--department-color, #24352a);
+}
+.department-modal.department-card-rainbow .department-program-info h4 {
+    background: linear-gradient(90deg, #FF6B6B, #FFD93D, #6BCB77, #4D96FF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.department-program-info p {
+    margin: 0 0 13px;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+
+    color: #737a74;
+}
+
+.department-program-info span {
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    color: #477a55;
+}
+
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .department-card-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .department-profile-window {
+        padding: 40px 25px;
+    }
+
+    .department-member-list {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+    .department-program-list {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .department-section {
+        padding: 70px 5%;
+    }
+
+    .department-card-grid {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 12px;
+    }
+
+    .department-card {
+        height: 290px;
+    }
+
+    .department-profile-modal {
+        padding: 10px;
+    }
+
+    .department-profile-window {
+        max-height: 95vh;
+
+        padding: 35px 18px;
+
+        border-radius: 22px;
+    }
+
+    .department-manager-card {
+        grid-template-columns: 1fr;
+    }
+
+    .department-manager-image {
+        height: 230px;
+    }
+
+    .department-member-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .department-program-card {
+        grid-template-columns: 40% 60%;
+    }
+
+}
+    /* ---------- CONTACT ---------- */
+    .contact {
+      background: #1f4332;
+      color: white;
+      text-align: center;
+    }
+    .contact p {
+      margin: 10px 0;
+      font-size: 18px;
+    }
+    footer {
+      background: #1e262e;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1024px) {
+      .activity-window {
+        flex-direction: column;
+        max-height: 95vh;
+        overflow-y: auto;
+        border-radius: 26px;
+      }
+      .overlay-left {
+        padding: 20px 20px 10px 20px;
+      }
+      .overlay-right {
+        padding: 24px 28px 28px 28px;
+      }
+      .main-image img {
+        max-height: 260px;
+      }
+      .thumbnail-container img {
+        width: 60px;
+        height: 60px;
+      }
+      .overlay-right h2 {
+        font-size: 30px;
+      }
+
+      .info-card {
+        flex: 1 1 40%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 16px 24px;
+      }
+      nav.scrolled {
+        padding: 12px 24px;
+      }
+      nav ul li {
+        margin-left: 18px;
+      }
+      nav ul li a {
+        font-size: 14px;
+      }
+      .about-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+      }
+      .about-image img {
+        max-width: 100%;
+      }
+      .about-text h2 {
+        font-size: 30px;
+      }
+      .coverflow {
+        height: 220px;
+      }
+      .card {
+        width: 140px;
+        height: 185px;
+      }
+    .card.left {
+  transform: translateX(-210px) scale(0.82);
+}
+
+.card.right {
+  transform: translateX(210px) scale(0.82);
+}
+      .activity-info {
+        width: 95%;
+        margin-top: 35px;
+      }
+      .activity-info h3 {
+        font-size: 24px;
+      }
+      .activity-window {
+        border-radius: 20px;
+      }
+      .overlay-right h2 {
+        font-size: 26px;
+      }
+      .overlay-right ul li {
+        font-size: 14px;
+      }
+      .info-card {
+        flex: 1;
+      }
+      .instagram-button {
+        width: 100%;
+        justify-content: center;
+      }
+      .close-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 22px;
+        top: 12px;
+        right: 12px;
+      }
+      section {
+        padding: 60px 5%;
+      }
+      .activities {
+        padding: 60px 3%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        width: 110px;
+        height: 150px;
+      }
+      .card.left {
+        transform: translateX(-90px) scale(0.7);
+      }
+      .card.right {
+        transform: translateX(90px) scale(0.7);
+      }
+      .coverflow {
+        height: 180px;
+      }
+      .thumbnail-container img {
+        width: 50px;
+        height: 50px;
+      }
+      .overlay-right {
+        padding: 18px 16px 20px 16px;
+      }
+      .overlay-left {
+        padding: 14px 14px 8px 14px;
+      }
+      .main-image img {
+        max-height: 180px;
+      }
+    }
+  /* =====================================================
+   MODERN DEPARTMENTS / FOUNDERS / PEOPLE
+===================================================== */
+
+/* ---------- DEPARTMENT SECTION ---------- */
+.departments-modern{
+  padding:110px 7% 80px;
+  background:#f7f8f3;
+}
+.modern-section-heading{
+  max-width:760px;
+  margin:0 auto 55px;
+}
+.modern-section-heading:not(.compact){
+  text-align:center;
+}
+.modern-section-heading>span{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:3px;
+  color:#65806b;
+}
+.modern-section-heading h2{
+  margin:12px 0 20px;
+  font-size:clamp(40px,5vw,65px);
+  line-height:.95;
+  color:#1f3025;
+}
+.modern-section-heading h2 em{
+  font-style:normal;
+  color:#65806b;
+}
+.modern-section-heading p{
+  max-width:650px;
+  margin:0 auto;
+  color:#707771;
+  line-height:1.8;
+}
+.modern-section-heading.compact{
+  text-align:center;
+  margin-top:90px;
+  margin-bottom:35px;
+}
+.modern-section-heading.compact p{margin-inline:auto}
+
+/* SIMPLE RECTANGULAR DEPARTMENT BUTTONS */
+.department-list-modern{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+  max-width:1100px;
+  margin:0 auto;
+}
+.department-block{
+  background:#fff;
+  border:1px solid rgba(31,48,37,.12);
+  border-radius:0;
+  padding:28px 30px;
+  cursor:pointer;
+  box-shadow:0 8px 24px rgba(31,48,37,.05);
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.department-block:hover{
+  transform:translateY(-4px);
+  border-color:#9db4a2;
+  box-shadow:0 16px 35px rgba(31,48,37,.1);
+}
+.department-block-head{
+  display:block;
+}
+.department-block-head h3{
+  margin:0;
+  font-size:clamp(25px,3vw,38px);
+  line-height:1.05;
+  color:#1f3025;
+}
+.department-block-head p{
+  margin:10px 0 0;
+  max-width:720px;
+  color:#7a827c;
+  font-size:12px;
+  line-height:1.65;
+}
+.department-open-label{
+  display:inline-block;
+  margin-top:18px;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:1.7px;
+  color:#65806b;
+}
+
+/* PEOPLE / FOUNDER CARDS */
+.member-card,.founder-card,.people-card{
+  border:1px solid #e1e6e1;
+  background:#fff;
+  overflow:hidden;
+}
+.person-photo{
+  width:100%;
+  aspect-ratio:1/1;
+  overflow:hidden;
+  background:#edf1ed;
+}
+.person-photo img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .5s ease;
+}
+.member-card:hover .person-photo img,.founder-card:hover .person-photo img,.people-card:hover .person-photo img{transform:scale(1.04)}
+.person-meta{padding:14px 15px 16px}
+.person-meta h4{font-size:16px;color:#1f3025;margin-bottom:5px}
+.person-meta span{font-size:11px;color:#788178}
+.founder-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px}
+.founder-card .person-meta{padding:10px}
+.founder-card .person-meta h4{font-size:14px}
+.people-section{margin-top:20px}
+.people-carousel-wrap{position:relative;display:flex;align-items:center;gap:12px}
+.people-carousel{overflow:hidden;flex:1}
+.people-track{display:flex;gap:18px;transition:transform .65s cubic-bezier(.22,.61,.36,1);will-change:transform}
+.people-card{flex:0 0 calc((100% - 54px)/4)}
+.people-nav{width:42px;height:42px;border:1px solid #ccd5cd;background:#fff;color:#1f3025;font-size:28px;cursor:pointer;display:grid;place-items:center;transition:.25s}
+.people-nav:hover{background:#1f3025;color:#fff}
+
+/* ---------- DEPARTMENT POPUP: intentionally different from the activity popup ---------- */
+.department-modal{
+  position:fixed;
+  pointer-events:none;inset:0;z-index:11000;
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;opacity:0;visibility:hidden;
+  transition:opacity .25s ease,visibility .25s ease;
+}
+.department-modal.active{opacity:1;visibility:visible;pointer-events:auto}
+.department-modal-backdrop{
+  position:absolute;inset:0;
+  background:rgba(20,32,24,.72);
+  backdrop-filter:blur(8px);
+}
+.department-modal-window{
+  position:relative;z-index:20;
+  width:min(1050px,100%);
+  max-height:92vh;
+  overflow-y:auto;
+  background:#f8f9f4;
+  border:1px solid rgba(255,255,255,.5);
+  border-radius:28px;
+  box-shadow:0 30px 90px rgba(0,0,0,.28);
+  padding:52px;
+  transform:translateY(18px) scale(.97);
+  transition:transform .3s ease;
+}
+.department-modal.active .department-modal-window{transform:translateY(0) scale(1)}
+.department-modal-close{
+  position:absolute;right:20px;top:20px;z-index:50;pointer-events:auto;
+}
+.department-modal-header{text-align:center;max-width:720px;margin:0 auto 22px}
+.department-modal-header .eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;color:#65806b}
+.department-modal-header h2{margin:10px 0 12px;font-size:clamp(38px,5vw,62px);line-height:.98;color:#1f3025}
+.department-modal-header p{font-size:13px;line-height:1.75;color:#707771;max-width:620px;margin:0 auto}
+.department-modal-section{margin-top:22px}
+.department-modal-section-title{text-align:center;margin-bottom:18px}
+.department-modal-section-title h3{margin:0;font-size:18px;color:#26372c}
+.department-modal-section-title span{display:block;margin-top:5px;font-size:9px;letter-spacing:2px;color:#8b918d}
+.department-leader-section{margin-top:4px;margin-bottom:22px}.department-leaders{display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+.department-leader-card{
+  width:min(100%,390px);background:#fff;border:1px solid #dfe5df;
+  padding:18px;text-align:center;
+}
+.department-leader-card .person-photo{width:145px;height:145px;margin:0 auto;border-radius:50%}
+.department-leader-card .person-meta{padding:13px 8px 5px}
+.department-leader-card .person-meta h4{font-size:21px;margin:6px 0 4px}
+.department-leader-card .person-meta p{font-size:12px;line-height:1.65;color:#707771;margin-top:8px}
+.department-members-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.department-activities-popup{margin-top:24px}
+.department-activities-popup .department-program-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.department-activities-popup .department-program-card{position:relative;z-index:2;display:grid;grid-template-columns:42% 58%;min-height:175px;overflow:hidden;background:#eef0ea;text-decoration:none;border-radius:18px;transition:transform .3s ease,box-shadow .3s ease;cursor:pointer}
+.department-activities-popup .department-program-card:hover{transform:translateY(-5px);box-shadow:0 15px 35px rgba(0,0,0,.08)}
+.department-activities-popup .department-program-image{min-height:175px;overflow:hidden}
+.department-activities-popup .department-program-image img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.department-activities-popup .department-program-card:hover .department-program-image img{transform:scale(1.05)}
+.department-activities-popup .department-program-info{padding:20px;display:flex;flex-direction:column;justify-content:center}
+.department-activities-popup .department-program-info h4{margin:0 0 7px;font-size:18px;color:var(--department-color,#24352a)}
+.department-modal.department-card-rainbow .department-activities-popup .department-program-info h4{background:linear-gradient(90deg,#FF6B6B,#FFD93D,#6BCB77,#4D96FF);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.department-activities-popup .department-program-info p{margin:0 0 13px;font-size:10px;line-height:1.6;color:#737a74}
+.department-activities-popup .department-program-info span{font-size:9px;font-weight:700;letter-spacing:1px;color:#477a55}
+.department-empty{padding:18px;background:#fff;border:1px solid #e1e6e1;color:#737a74;font-size:12px;line-height:1.7;text-align:center}
+
+.activities .section-title{text-align:center;max-width:760px;margin:0 auto 20px}.activities .section-title h2{font-size:clamp(40px,5vw,65px);line-height:.95;color:#1f3025;margin:12px 0 20px}.activities .section-title p{color:#707771;line-height:1.8}.contact-modern{background:#1f4332;color:#fff;padding:50px 7% 45px;text-align:center}.contact-inner>span{font-size:10px;letter-spacing:3px;font-weight:700;opacity:.75}.contact-inner h2{font-size:clamp(34px,4vw,54px);margin:12px 0 30px}.social-links{display:flex;justify-content:center;align-items:center;gap:22px}.social-icon{width:40px;height:40px;display:grid;place-items:center;border:0;border-radius:50%;color:#fff;transition:transform .25s,background .25s}.social-icon svg{display:block}.social-icon:hover{transform:translateY(-4px);background:rgba(255,255,255,.12)}
+@media(max-width:1000px){.founder-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.member-area{grid-template-columns:repeat(3,minmax(0,1fr))}.people-card{flex-basis:calc((100% - 18px)/2)}}@media(max-width:700px){.departments-modern{padding:75px 20px 60px}.department-block{padding:20px}.department-block-head{display:block}.department-block-head h3{margin-top:8px}.leader-card{display:block}.leader-card .person-photo{width:100%;height:auto;aspect-ratio:1/1}.member-area{grid-template-columns:repeat(2,minmax(0,1fr))}.founder-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.people-card{flex-basis:100%}.people-nav{width:36px;height:36px;font-size:24px}.social-links{gap:12px}.social-icon{width:42px;height:42px}}
+
+
+
+@media(max-width:1000px){
+  .department-members-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .founder-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .people-card{flex-basis:calc((100% - 18px)/2)}
+  .department-activities-popup .department-program-list{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .departments-modern{padding:75px 20px 60px}
+  .department-list-modern{grid-template-columns:1fr}
+  .department-block{padding:22px}
+  .department-modal{padding:10px}
+  .department-modal-window{padding:42px 18px 28px;max-height:95vh}
+  .department-leader-card{width:100%}
+  .department-members-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .founder-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .people-card{flex-basis:100%}
+  .people-nav{width:36px;height:36px;font-size:24px}
+  .department-activities-popup .department-program-list{grid-template-columns:1fr}
+  .department-activities-popup .department-program-card{grid-template-columns:40% 60%}
+}
+
+/* =====================================================
+   FINAL DEPARTMENT CARD + PEOPLE CAROUSEL POLISH
+===================================================== */
+.department-list-modern{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:15px;
+  width:100%;
+  max-width:1180px;
+  margin:0 auto;
+}
+.department-card{height:300px;perspective:1200px;cursor:pointer;min-width:0;position:relative;z-index:1}
+.department-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .75s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+.department-card:hover .department-card-inner,.department-card:focus .department-card-inner{transform:rotateY(180deg)}
+.department-card-front,.department-card-back{position:absolute;width:100%;height:100%;overflow:hidden;border-radius:20px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.department-card-front{display:flex;flex-direction:column;background:#fff}
+.department-card-image{height:62%;overflow:hidden}
+.department-card-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.department-card:hover .department-card-image img{transform:scale(1.06)}
+.department-card-info{flex:1;padding:13px 15px;display:flex;flex-direction:column;justify-content:center}
+.department-card-info h3{margin:0 0 7px;color:#1f3025;font-size:21px;line-height:1.1}
+.department-card-info p{margin:0;color:#707771;font-size:11px;line-height:1.55}
+.department-card-back{display:flex;flex-direction:column;justify-content:center;padding:28px;background:var(--department-color,#3f7d50);color:#fff;transform:rotateY(180deg)}
+.department-card-back h3{margin:0 0 12px;font-size:27px;line-height:1.05;color:#fff}
+.department-card-back p{margin:0;color:rgba(255,255,255,.9);font-size:12px;line-height:1.7}
+.department-card-click{display:inline-block;margin-top:20px;font-size:9px;font-weight:700;letter-spacing:1.6px;color:#fff}
+.department-card-green{--department-color:#3fae5c}.department-card-blue{--department-color:#3f9ec0}.department-card-mint{--department-color:#24eb9b}.department-card-rainbow{--department-color:#4D96FF}.department-card-rainbow .department-card-info h3{background:linear-gradient(90deg,#FF6B6B,#FFD93D,#6BCB77,#4D96FF);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}.department-card-rainbow .department-card-back{background:linear-gradient(120deg,#FF6B6B,#FFD93D,#6BCB77,#4D96FF)}.department-card-pink{--department-color:#c96b8d}
+
+/* Founders: keep eight frames */
+.founders-section{margin-top:95px}
+.founder-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px;max-width:1180px;margin:0 auto}
+.founder-card{border:1px solid #e1e6e1;background:#fff;overflow:hidden;border-radius:14px;box-shadow:0 8px 20px rgba(31,48,37,.08)}
+
+/* Everyone who joined: circular, smooth, continuous carousel */
+.people-section{margin-top:95px;overflow:hidden}
+.people-carousel-wrap{position:relative;max-width:1180px;margin:0 auto;display:block}
+.people-carousel{overflow:hidden;width:100%;mask-image:linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%)}
+.people-track{display:flex;width:max-content;gap:28px;animation:peopleSmooth 32s linear infinite;will-change:transform}
+.people-card{flex:0 0 145px;border:0;background:transparent;overflow:visible;text-align:center}
+.people-card .person-photo{width:125px;height:125px;aspect-ratio:1/1;margin:0 auto;border-radius:50%;overflow:hidden;background:#edf1ed;border:4px solid #fff;box-shadow:0 8px 25px rgba(31,48,37,.1)}
+.people-card .person-photo img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.people-card .person-meta{padding:11px 3px 0}
+.people-card .person-meta h4{font-size:13px;color:#1f3025;margin:0 0 4px;white-space:nowrap}
+.people-card .person-meta span{font-size:9px;color:#788178}
+.people-nav{display:none}
+@keyframes peopleSmooth{from{transform:translateX(0)}to{transform:translateX(calc(-50% + 14px))}}
+@media(max-width:1100px){.department-list-modern{grid-template-columns:repeat(3,minmax(0,1fr))}.founder-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:700px){.department-list-modern{grid-template-columns:1fr}.department-card{height:330px}.founder-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.people-track{gap:20px}.people-card{flex-basis:130px}.people-card .person-photo{width:105px;height:105px}}
+</style>
+
+<style id="patch-overrides">
+/* ===== SCROLL PROGRESS + BACK TO TOP ===== */
+.scroll-progress{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 1001;
+  background: transparent;
+  pointer-events: none;
+}
+.scroll-progress-bar{
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #24eb9b, #1F6E43);
+  transition: width 0.1s linear;
+}
+.back-to-top{
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity .3s ease, transform .3s ease, visibility .3s ease, background .3s ease, backdrop-filter .3s ease, box-shadow .3s ease;
+  z-index: 999;
+}
+.back-to-top img{
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  transform: rotate(90deg);
+  pointer-events: none;
+}
+.back-to-top.is-visible{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.back-to-top:hover{
+  background: rgba(36,235,155,0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 18px 4px rgba(36,235,155,.75), 0 0 40px 10px rgba(36,235,155,.4);
+}
+@media(max-width:700px){
+  .back-to-top{width:46px;height:46px;right:16px;bottom:16px;font-size:18px}
+  .back-to-top img{width:22px;height:22px}
+}
+
+/* ===== PAGE LOADER (bouncy entrance) ===== */
+.page-loader{
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  transition: opacity 0.9s ease, visibility 0.9s ease;
+}
+.page-loader.is-hidden{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.page-loader-logo{
+  width: 300px;
+  max-width: 45vw;
+  height: auto;
+  opacity: 0;
+  transform: scale(0.4);
+  animation: pageLoaderBounceIn 1.1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+             pageLoaderFloat 1.8s ease-in-out 1.1s infinite;
+}
+@keyframes pageLoaderBounceIn{
+  0%   { opacity: 0; transform: scale(0.4); }
+  55%  { opacity: 1; transform: scale(1.12); }
+  75%  { transform: scale(0.94); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes pageLoaderFloat{
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-8px) scale(1.03); }
+}
+
+
+/* ===== Section-to-section spacing (About -> Departments -> Activities -> Founders -> People) ===== */
+#about { padding-bottom: 20px !important; }
+.departments-modern { padding-top: 20px !important; padding-bottom: 20px !important; }
+.activities {
+  margin-top: 0 !important;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+}
+.activities .section-title { margin-bottom: 10px !important; }
+.founders-section { margin-top: 0 !important; padding-top: 20px !important; padding-bottom: 20px !important; }
+.people-section { margin-top: 0 !important; padding-top: 20px !important; }
+.departments-modern .modern-section-heading,
+.founders-section .modern-section-heading,
+.people-section .modern-section-heading {
+  margin-top: 0 !important;
+  margin-bottom: 10px !important;
+}
+
+/* ===== Department cards ===== */
+.department-list-modern { gap: 12px !important; }
+.department-card { height: 300px !important; }
+.department-card-front, .department-card-back { border-radius: 14px !important; }
+
+/* ===== Department popup: visibility / stacking ===== */
+.department-modal { z-index: 20000 !important; }
+.department-modal-window { z-index: 20001 !important; }
+.department-modal.active { display: flex !important; }
+.activity-overlay.show { z-index: 30000; }
+
+/* ===== Activity popup list bullet uses the bird logo ===== */
+.overlay-right ul li { padding-left: 30px !important; }
+.overlay-right ul li::before {
+  content: "" !important;
+  width: 20px !important;
+  height: 20px !important;
+  left: 0 !important;
+  top: 3px !important;
+  background: url('bird.png') center/contain no-repeat !important;
+  color: transparent !important;
+}
+
+/* ===== Founders / People carousel ===== */
+.founder-grid { gap: 10px !important; }
+.people-track {
+  gap: 20px;
+  animation: peopleSmooth 32s linear infinite !important;
+  animation-play-state: running !important;
+}
+.people-track:hover { animation-play-state: running !important; }
+
+/* ===== Department popup: scroll behavior ===== */
+.department-modal-window {
+  height: min(92vh, 900px);
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #b8c4ba transparent;
+}
+.department-modal-window::-webkit-scrollbar { width: 7px; }
+.department-modal-window::-webkit-scrollbar-track { background: transparent; }
+.department-modal-window::-webkit-scrollbar-thumb { background: #b8c4ba; border-radius: 10px; }
+
+/* ===== Department popup: leader (project manager) ===== */
+.department-leaders {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px !important;
+  flex-wrap: wrap;
+}
+.department-leader-card {
+  width: 190px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  text-align: center;
+}
+.department-leader-card .person-photo {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #edf1ed;
+  border: 5px solid var(--department-color, #fff);
+  box-shadow: 0 8px 25px rgba(31,48,37,.12);
+}
+.department-leader-card .person-meta { padding: 8px 2px 0 !important; }
+.department-leader-card .person-meta > span {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #65806b;
+  margin-bottom: 5px;
+}
+.department-leader-card .person-meta h4 {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #1f3025;
+}
+.department-leader-card .person-meta p { display: none; }
+
+/* ===== Department popup: members ===== */
+.department-members-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 12px 12px !important;
+  align-items: start;
+}
+.department-members-grid .member-card {
+  border: 0;
+  background: transparent;
+  overflow: visible;
+  text-align: center;
+}
+.department-members-grid .member-card .person-photo {
+  width: 128px;
+  height: 128px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #edf1ed;
+  border: 4px solid var(--department-color, #fff);
+  box-shadow: 0 8px 22px rgba(31,48,37,.10);
+}
+.department-members-grid .member-card .person-meta { padding: 12px 3px 0; }
+.department-members-grid .member-card .person-meta h4 {
+  margin: 0 0 4px;
+  font-size: 14px;
+  line-height: 1.25;
+  color: #1f3025;
+}
+.department-members-grid .member-card .person-meta span {
+  font-size: 9px;
+  line-height: 1.4;
+  color: #788178;
+}
+
+/* ===== Department popup: PM -> members gap, section -> section gap ===== */
+/* These are <section> tags, so they were silently inheriting the global
+   `section { padding: 100px 10%; }` reset — that 100px padding, not the
+   margins below, was the real cause of the huge gaps. Zero it out here. */
+.department-modal-header { margin-bottom: 8px !important; }
+.department-modal-section {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 4px !important;
+}
+.department-leader-section { margin-top: 0 !important; margin-bottom: 4px !important; }
+.department-modal-section-title { margin-bottom: 6px !important; }
+.department-activities-popup {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 10px !important;
+}
+
+@media (max-width: 1000px) {
+  .department-members-grid { grid-template-columns: repeat(4, minmax(0,1fr)); }
+}
+@media (max-width: 700px) {
+  #about { padding-bottom: 18px !important; }
+  .departments-modern { padding-top: 22px !important; }
+  .activities { padding-top: 22px !important; }
+  .founders-section { margin-top: 0 !important; }
+  .people-section { margin-top: 0 !important; }
+  .department-leader-section { margin-bottom: 6px !important; }
+  .department-modal-section { margin-top: 8px !important; }
+  .department-modal-window { height: 95vh; max-height: 95vh; padding: 42px 18px 30px; }
+  .department-members-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 26px 16px; }
+  .department-leader-card { width: 170px; }
+  .department-leader-card .person-photo { width: 130px; height: 130px; }
+  .department-members-grid .member-card .person-photo { width: 112px; height: 112px; }
+}
+
+/* =====================================================
+   SCRAPBOOK-STYLE ABOUT + "PEOPLE BEHIND" SECTION
+   (matches the reference mockup: mint fading into forest
+   green, paper-cutout cards, blobs/stars/drips deco)
+===================================================== */
+
+.about.about-scrapbook{
+  position: relative;
+  overflow: hidden;
+  padding: 90px 8% 140px;
+  background: linear-gradient(180deg,
+    #ffffff 0%,
+    #ffffff 68%,
+    #f6f4ef 78%,
+    #65806b 88%,
+    #1f4332 95%,
+    #172b20 100%);
+  isolation: isolate;
+}
+
+.about.about-scrapbook::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 180px 180px;
+  opacity: 0.9;
+  mix-blend-mode: overlay;
+  /* Gradual fade-in of grain across the seam, no hard edges. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 62%, black 92%, black 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, transparent 62%, black 92%, black 100%);
+}
+
+.about-scrapbook .scrap-card{
+  position: relative;
+  z-index: 3;
+  background: #fdfdfb;
+  border: 1px solid #dfe3da;
+  border-radius: 10px;
+  box-shadow: 0 18px 34px rgba(20,40,25,0.18);
+  padding: 34px 36px;
+  max-width: 480px;
+}
+
+.about-scrapbook .card-what{
+  margin: 0 auto 0 2%;
+}
+
+.about-scrapbook .card-gyaf{
+  margin: -30px 2% 0 auto;
+}
+
+.about-scrapbook .scrap-card h2{
+  font-size: 30px;
+  margin-bottom: 16px;
+  color: #1F6E43;
+}
+
+.about-scrapbook .scrap-card p{
+  font-size: 15px;
+  line-height: 1.75;
+  color: #4a4a4a;
+}
+
+.about-scrapbook .scrap-card b{
+  color: #1F6E43;
+}
+
+/* ---- decorative shapes (real art assets, positioned to match
+   where the coded placeholders used to sit) ---- */
+.scrap-deco{
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+.scrap-deco img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.deco-teal-blob{
+  top: -30px;
+  right: 8%;
+  width: 220px;
+  height: 90px;
+  transform: rotate(-6deg);
+}
+
+.deco-blue-burst{
+  top: 250px;
+  left: -20px;
+  width: 90px;
+  height: 90px;
+}
+
+.deco-olive-blob{
+  top: 130px;
+  left: 40%;
+  width: 110px;
+  height: 100px;
+  transform: rotate(8deg);
+}
+
+.deco-drips{
+  top: 195px;
+  right: 12%;
+  width: 90px;
+  height: 190px;
+}
+
+.deco-spiral{
+  top: 430px;
+  left: 39%;
+  width: 90px;
+  height: 90px;
+}
+
+.deco-star-left{
+  top: 400px;
+  left: 2%;
+  width: 200px;
+  height: 200px;
+  transform: rotate(-12deg);
+}
+
+.deco-star-right{
+  top: 430px;
+  right: 4%;
+  width: 130px;
+  height: 130px;
+  transform: rotate(20deg);
+}
+
+/* ---- decorative shapes for Activities / Founders / People
+   (real art assets, override the generic direct-child stacking
+   so they can be absolutely positioned in the corners) ---- */
+.departments-dark > .scrap-deco,
+.activities > .scrap-deco,
+.founders-section > .scrap-deco,
+.people-section > .scrap-deco{
+  position: absolute !important;
+  z-index: 3 !important;
+}
+.deco-ring-blue{
+  top: 10px;
+  right: 6%;
+  width: 90px;
+  height: 90px;
+}
+.deco-yellow-squiggle{
+  top: 25px;
+  left: 4%;
+  width: 220px;
+  height: 42px;
+  transform: rotate(-4deg);
+}
+.deco-leaf-left{
+  bottom: 8%;
+  left: 3%;
+  width: 70px;
+  height: 90px;
+  transform: rotate(-18deg);
+}
+.deco-carousel-left{
+  top: 290px;
+  left: 1%;
+  width: 80px;
+  height: 105px;
+  transform: rotate(-6deg);
+}
+.deco-carousel-right{
+  top: 320px;
+  right: 2%;
+  width: 90px;
+  height: 65px;
+  transform: rotate(6deg);
+}
+.deco-carousel-left-2{
+  top: 200px;
+  left: 3%;
+  width: 34px;
+  height: 34px;
+}
+.deco-carousel-right-2{
+  top: 400px;
+  right: 4%;
+  width: 55px;
+  height: 55px;
+}
+.deco-flower-right{
+  top: 15px;
+  right: 6%;
+  width: 60px;
+  height: 60px;
+}
+.deco-dept-leaf{
+  top: 6%;
+  right: 4%;
+  bottom: auto;
+  left: auto;
+  width: 60px;
+  height: 150px;
+  transform: rotate(-15deg);
+}
+.deco-dept-dots{
+  top: 6%;
+  right: 4%;
+  width: 150px;
+  height: 55px;
+}
+.deco-purple-triangle{
+  top: 10%;
+  left: -20px;
+  width: 110px;
+  height: 100px;
+}
+.deco-orange-rings{
+  bottom: 6%;
+  right: -10px;
+  width: 130px;
+  height: 120px;
+}
+.deco-pink-ribbon{
+  top: 8%;
+  left: -10px;
+  width: 100px;
+  height: 130px;
+}
+.deco-orange-rings-2{
+  top: 6%;
+  right: -20px;
+  width: 120px;
+  height: 110px;
+}
+@media (max-width: 900px){
+  .deco-ring-blue,.deco-yellow-squiggle,.deco-purple-triangle,
+  .deco-orange-rings,.deco-pink-ribbon,.deco-orange-rings-2,
+  .deco-carousel-left,.deco-carousel-right,
+  .deco-carousel-left-2,.deco-carousel-right-2{
+    transform: scale(.6);
+  }
+}
+
+/* ---- dark "People Behind" department section ---- */
+.departments-modern.departments-dark{
+  position: relative;
+  background: linear-gradient(180deg, #172b20 0%, #599c5d 100%);
+  padding-top: 70px;
+  overflow: hidden;
+}
+
+.departments-dark::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 180px 180px;
+  opacity: 0.9;
+  mix-blend-mode: overlay;
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 8%, transparent 32%);
+  mask-image: linear-gradient(to bottom, black 0%, black 8%, transparent 32%);
+}
+
+.departments-dark > *{
+  position: relative;
+  z-index: 2;
+}
+
+.departments-dark .heading-glow-box{
+  margin-bottom: 60px;
+}
+
+.departments-dark .heading-glow-inner{
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 10px 30px;
+  text-align: center;
+}
+
+.departments-dark .heading-glow-inner h2{
+  color: #f4f6f0;
+  font-size: clamp(32px,4vw,46px);
+  text-shadow: 0 4px 24px rgba(0,0,0,0.45);
+}
+
+.departments-dark .heading-glow-inner h2 em{
+  color: #eedd4b;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.45);
+}
+
+.departments-dark .heading-glow-inner p{
+  margin-top: 14px;
+  color: #cfe4d4;
+  font-size: 15px;
+}
+
+@media (max-width: 900px){
+  .about.about-scrapbook{ padding: 70px 6% 260px; }
+  .about-scrapbook .scrap-card{ max-width: 100%; margin: 0 0 26px !important; }
+  .deco-blue-burst{ left: -30px; }
+  .deco-star-left{ width: 140px; height: 140px; left: -20px; }
+  .deco-star-right{ width: 100px; height: 100px; }
+  .deco-drips{ right: 6%; }
+}
+
+/* =====================================================
+   STACKED HERO OVERLAP
+   Each following section physically covers the sticky
+   video hero while scrolling, instead of showing it as
+   a background.
+===================================================== */
+#about,
+#departments,
+#activities,
+.founders-section,
+.people-section,
+#contact,
+footer {
+  position: relative;
+  z-index: 10;
+  isolation: isolate;
+}
+
+/* =====================================================
+   ACTIVITIES -> FOUNDERS -> PEOPLE -> CONTACT
+   Continuous dark-green -> gold gradient, replacing the
+   white/cream backgrounds, picking up where the dark
+   "People Behind Every Action" green (#17301f) leaves off.
+===================================================== */
+.activities{
+  background: linear-gradient(180deg, #599c5d 0%, #9da63f 100%) !important;
+}
+.founders-section{
+  background: linear-gradient(180deg, #9da63f 0%, #e8b140 100%);
+}
+.people-section{
+  background: linear-gradient(180deg, #e8b140 0%, #edc846 100%);
+}
+.contact-modern{
+  background: #1f4332 !important;
+  color: #fff !important;
+}
+.contact-inner > span{
+  opacity: .75 !important;
+}
+.social-icon:hover{
+  background: rgba(255,255,255,.12) !important;
+}
+.contact-inner{max-width:640px;margin:0 auto;}
+.contact-lead{margin:0 auto 28px;max-width:480px;font-size:15px;line-height:1.7;color:rgba(255,255,255,.82);}
+.contact-cta{display:inline-block;margin-bottom:36px;padding:14px 34px;border-radius:999px;background:#24eb9b;color:#12271c;font-weight:700;font-size:13px;letter-spacing:1px;text-decoration:none;text-transform:uppercase;transition:transform .25s ease,box-shadow .25s ease;}
+.contact-cta:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(36,235,155,.35);}
+@media(max-width:700px){.contact-cta{padding:13px 28px;font-size:12px;}}
+
+/* Subtle continuous grain tying the whole green run together */
+.activities,
+.founders-section,
+.people-section,
+.contact-modern{
+  position: relative;
+}
+.activities::after,
+.founders-section::after,
+.people-section::after,
+.contact-modern::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 180px 180px;
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+}
+.activities > *,
+.founders-section > *,
+.people-section > *,
+.contact-modern > *{
+  position: relative;
+  z-index: 2;
+}
+
+/* Cream accents from the palette, used sparingly so no section
+   reads as a plain white/cream block */
+.founders-section .modern-section-heading h2 em,
+.people-section .modern-section-heading h2 em{
+  color: #f6f4ef !important;
+}
+.founder-card{
+  border-color: #eef4ef !important;
+}
+
+/* Text/UI contrast on the new dark/gold backgrounds */
+.activities .section-title h2,
+.activity-info h3{
+  color: #ffffff !important;
+}
+.activities .section-title p,
+.activity-info p{
+  color: rgba(255,255,255,0.82) !important;
+}
+.founders-section .modern-section-heading > span,
+.people-section .modern-section-heading > span{
+  color: rgba(255,255,255,0.75) !important;
+}
+.founders-section .modern-section-heading h2,
+.people-section .modern-section-heading h2{
+  color: #ffffff !important;
+}
+.founders-section .modern-section-heading h2 em,
+.people-section .modern-section-heading h2 em{
+  color: #1f3025 !important;
+}
+.founders-section .modern-section-heading p,
+.people-section .modern-section-heading p{
+  color: rgba(255,255,255,0.82) !important;
+}
+.people-card .person-meta h4{
+  color: #ffffff !important;
+}
+.people-card .person-meta span{
+  color: rgba(255,255,255,0.78) !important;
+}
+</style>
+
+</head>
+<body>
+  <!-- PAGE LOADER -->
+  <div id="pageLoader" class="page-loader">
+    <img src="Group 28.png" alt="Akar Nusa" class="page-loader-logo" />
+  </div>
+  <script>
+    window.addEventListener("load", function () {
+      var loader = document.getElementById("pageLoader");
+      if (!loader) return;
+      setTimeout(function () {
+        loader.classList.add("is-hidden");
+        setTimeout(function () {
+          loader.remove();
+        }, 900);
+      }, 2000);
+    });
+  </script>
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="logo"><a href="#"><img src="Group 28.png" alt="Akar Nusa Logo" /></a></div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#departments">Departments</a></li>
+      <li><a href="#activities">Activities</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar" id="scrollProgressBar"></div></div>
+
+  <!-- BACK TO TOP -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top"><img src="bird.png" alt="" /></button>
+
+  <!-- HERO -->
+  <header class="hero">
+    <video
+      id="heroVideo"
+      class="hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="GYAF2026_V4_WebBanner.png"
+    >
+      <source src="./video%20fix.mp4" type="video/mp4">
+      Your browser does not support HTML video.
+    </video>
+  </header>
+
+
+  <!-- ABOUT -->
+  <section id="about" class="about about-scrapbook">
+
+    <!-- decorative scrapbook shapes (real art assets) -->
+    <div class="scrap-deco deco-teal-blob" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 147.png" alt=""></div>
+    <div class="scrap-deco deco-blue-burst" aria-hidden="true"><img loading="lazy" decoding="async" src="Star 7.png" alt=""></div>
+    <div class="scrap-deco deco-olive-blob" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 148.png" alt=""></div>
+    <div class="scrap-deco deco-spiral" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 156.png" alt=""></div>
+    <div class="scrap-deco deco-drips" aria-hidden="true"><img loading="lazy" decoding="async" src="Group 71.png" alt=""></div>
+    <div class="scrap-deco deco-star-left" aria-hidden="true"><img loading="lazy" decoding="async" src="Star 6.png" alt=""></div>
+    <div class="scrap-deco deco-star-right" aria-hidden="true"><img loading="lazy" decoding="async" src="Star 6.png" alt=""></div>
+
+    <div class="scrap-card card-what">
+      <h2>What is AkarNusa ?</h2>
+      <p>
+        <b>Akar Nusa is a non-profit organization focusing on the environment and education.</b> Our mission is to raise awareness and encourage the younger generation to take concrete action towards sustainable development. Our work has been recognized by the International Baccalaureate (IB), including through funding support and opportunities that have enabled us to further develop and expand our sustainability and education initiatives.
+
+          Akar Nusa's programs include
+          <a href="#" class="mint" onclick="openDepartmentModal(3);return false;">Akar NuAction</a>,
+          <a href="#" class="blue" onclick="openDepartmentModal(2);return false;">Akar NuCycle</a>,
+          <a href="#" class="rainbow" onclick="openDepartmentModal(4);return false;">Akar Nusa Tales</a>,
+          and <a href="#" class="green" onclick="openDepartmentModal(1);return false;">GreenLeap</a>.
+      </p>
+    </div>
+
+    <div class="scrap-card card-gyaf">
+      <h2>GYAF IB Awardee</h2>
+      <p>
+        Receiving the Global Youth Action Fund is a <b>meaningful recognition</b> that encourages us to keep <b>expanding our impact and empowering more young people to lead change.</b> We hope this support enables our programs to reach more schools and communities, creating a lasting positive impact for both people and the planet.
+      </p>
+      <p><b> — AkarNusa</b></p>
+    </div>
+  </section>
+
+  <!-- =====================================================
+     DEPARTMENT SECTION
+===================================================== -->
+<section id="departments" class="departments-modern departments-dark">
+  <div class="scrap-deco deco-dept-leaf" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 146.png" alt=""></div>
+  <div class="modern-section-heading heading-glow-box">
+    <div class="heading-glow-inner">
+      <h2>The People Behind<br><em>Every Action.</em></h2>
+      <p>Five teams, one mission. Meet the people who keep Akar Nusa moving.</p>
+    </div>
+  </div>
+  <div id="departmentList" class="department-list-modern"></div>
+
+</section>
+
+<!-- DEPARTMENT POPUP -->
+<div class="department-modal" id="departmentModal" aria-hidden="true">
+  <div class="department-modal-backdrop" id="departmentModalBackdrop"></div>
+  <div class="department-modal-window" role="dialog" aria-modal="true" aria-labelledby="departmentModalName">
+    <button class="department-modal-close close-btn" id="departmentModalClose" aria-label="Close department">✕</button>
+
+    <header class="department-modal-header">
+      <span class="eyebrow" id="departmentModalCategory">DEPARTMENT</span>
+      <h2 id="departmentModalName">Department</h2>
+      <p id="departmentModalDescription">Department description.</p>
+    </header>
+
+    <section class="department-modal-section department-leader-section">
+      <div class="department-leaders" id="departmentLeaderList"></div>
+    </section>
+
+    <section class="department-modal-section">
+      <div class="department-modal-section-title">
+        <h3>Our Team</h3>
+        <span>THE PEOPLE BEHIND THE WORK</span>
+      </div>
+      <div class="department-members-grid" id="departmentMemberList"></div>
+    </section>
+
+
+
+    <section class="department-activities-popup">
+      <div class="department-modal-section-title">
+        <h3 id="departmentProgramsHeading">Our Activities</h3>
+        <span>PROGRAMS CONNECTED TO THIS DEPARTMENT</span>
+      </div>
+      <div class="department-program-list" id="departmentProgramList"></div>
+    </section>
+  </div>
+</div>
+
+<!-- ACTIVITIES -->
+  <section id="activities" class="activities">
+    <div class="scrap-deco deco-leaf-left" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 101.png" alt=""></div>
+    <div class="scrap-deco deco-flower-right" aria-hidden="true"><img loading="lazy" decoding="async" src="Group 64.png" alt=""></div>
+    <div class="scrap-deco deco-carousel-left" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 139.png" alt=""></div>
+    <div class="scrap-deco deco-carousel-left-2" aria-hidden="true"><img loading="lazy" decoding="async" src="Ellipse 32.png" alt=""></div>
+    <div class="scrap-deco deco-carousel-right" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 107.png" alt=""></div>
+    <div class="scrap-deco deco-carousel-right-2" aria-hidden="true"><img loading="lazy" decoding="async" src="Group 72.png" alt=""></div>
+    <div class="section-title">
+      <h2>Our Activities</h2>
+      <p>Growing together through meaningful actions.</p>
+    </div>
+
+    <!-- COVERFLOW -->
+    <div class="coverflow">
+      <!-- GREENLEAP -->
+     <div class="card active"
+        data-title="GreenLeap"
+        data-label="GREENLEAP PROGRAM"
+        data-short="Environmental education for young people."
+        data-long="GreenLeap is an environmental education program that empowers students through workshops, sustainability campaigns, environmental actions, and collaboration with schools."
+        data-category="Education"
+        data-participants="120+"
+        data-list="Environmental Workshop|School Visit|Tree Planting|Awareness Campaign"
+        data-images="IMG_8234.jpg,IMG_8228.jpg,IMG_8181.jpg,IMG_8279.jpg">
+        <img src="IMG_8234.jpg" alt="GreenLeap" loading="lazy" decoding="async" />
+      </div>
+      <!-- AKAR NUCYCLE -->
+      <div class="card"
+        data-title="Akar NuCycle"
+        data-label="AKAR NUCYCLE PROGRAM"
+        data-short="Waste management initiative."
+        data-long="Akar NuCycle teaches communities about waste sorting, recycling, composting, and sustainable waste management."
+        data-category="Environment"
+        data-participants="80+"
+        data-list="Waste Sorting|Plastic Recycling|Composting|Public Education"
+        data-images="activity2.jpg,activity3.jpg,activity4.jpg,activity5.jpg">
+        <img src="activity2.jpg" alt="Akar NuCycle" loading="lazy" decoding="async" />
+      </div>
+      <!-- AKAR NUACTION -->
+      <div class="card"
+        data-title="Akar NuAction"
+        data-label="AKAR NUACTION PROGRAM"
+        data-short="Community environmental action."
+        data-long="Akar NuAction invites volunteers to directly participate in restoring ecosystems through environmental projects."
+        data-category="Community"
+        data-participants="150+"
+        data-list="Tree Planting|River Cleanup|Volunteer Day|Community Service"
+        data-images="nuaction.jpeg,BF792313-94DB-49D3-AFB0-C859D0E57840.jpg,DSC09325.JPG,IMG_6298.jpg">
+        <img src="nuaction.jpeg" alt="Akar NuAction" loading="lazy" decoding="async" />
+      </div>
+      <!-- TALES -->
+      <div class="card"
+        data-title="Akar Nusa Tales"
+        data-label="AKAR NUSA TALES PROGRAM"
+        data-short="Creative storytelling."
+        data-long="Akar Nusa Tales inspires environmental awareness through storytelling, creative media, and educational content."
+        data-instagram="https://instagram.com/akarnusa"
+        data-category="Creative"
+        data-participants="60+"
+        data-list="Storytelling|Podcast|Educational Content|Discussion"
+        data-images="activity4.jpg,activity5.jpg,activity1.jpg,activity2.jpg">
+        <img src="activity4.jpg" alt="Akar Nusa Tales" loading="lazy" decoding="async" />
+      </div>
+      <!-- TREE PLANTING -->
+      <div class="card"
+        data-title="Tree Planting"
+        data-label="TREE PLANTING PROGRAM"
+        data-short="Greening our future."
+        data-long="Together with students and communities, we plant trees to restore green spaces and build environmental awareness."
+        data-instagram="https://instagram.com/akarnusa"
+        data-category="Environment"
+        data-participants="200+"
+        data-list="Planting Trees|Monitoring|Maintenance|Education"
+        data-images="01.jpg,activity1.jpg,activity2.jpg,activity3.jpg">
+        <img src="01.jpg" alt="Tree Planting" loading="lazy" decoding="async" />
+      </div>
+      
+    </div>
+    
+    <!-- INFO BAWAH COVERFLOW -->
+    <div class="activity-info">
+      <h3 id="activity-title">GreenLeap</h3>
+      <p id="activity-desc">Environmental education for young people.</p>
+    </div>
+  </section>
+
+  <!-- OVERLAY DETAIL (kept outside #activities on purpose: that section
+       is an isolated stacking context for the sticky-hero overlap effect,
+       which would otherwise trap this popup below other page content
+       no matter how high its z-index is) -->
+  <div id="activityOverlay" class="activity-overlay">
+    <div class="activity-window">
+      <button id="closeOverlay" class="close-btn">✕</button>
+
+      <!-- LEFT: GALLERY -->
+      <div class="overlay-left">
+        <div class="main-image">
+          <img id="overlayMainImage" src="activity1.jpg" alt="Activity" loading="lazy" decoding="async" />
+        </div>
+        <div id="thumbnailContainer" class="thumbnail-container"></div>
+      </div>
+
+      <!-- RIGHT: CONTENT -->
+      <div class="overlay-right">
+      <span id="overlayLabel" class="program-label">GREENLEAP PROGRAM</span>
+      <h2 id="overlayTitle">GreenLeap</h2>
+        <p class="description" id="overlayDescription">GreenLeap is an environmental education program that empowers students through workshops, sustainability campaigns, environmental actions, and collaboration with schools.</p>
+
+        <div class="divider"></div>
+
+        <h3>What We Did</h3>
+        <ul id="overlayList"></ul>
+
+        <div class="divider"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="founders-section">
+    <div class="scrap-deco deco-purple-triangle" aria-hidden="true"><img loading="lazy" decoding="async" src="Polygon 1.png" alt=""></div>
+    <div class="scrap-deco deco-orange-rings" aria-hidden="true"><img loading="lazy" decoding="async" src="Group 79.png" alt=""></div>
+    <div class="modern-section-heading compact">
+      <h2>The Roots of <em>Akar Nusa.</em></h2>
+    </div>
+    <div id="founderGrid" class="founder-grid"></div>
+  </section>
+
+  <section class="people-section">
+    <div class="scrap-deco deco-pink-ribbon" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 118.png" alt=""></div>
+    <div class="scrap-deco deco-orange-rings-2" aria-hidden="true"><img loading="lazy" decoding="async" src="Subtract-1.png" alt=""></div>
+    <div class="modern-section-heading compact">
+      <span>EVERYONE WHO JOINED</span>
+      <h2>Akar Nusa <em>People.</em></h2>
+    </div>
+    <div class="people-carousel-wrap">
+      <button class="people-nav prev" id="peoplePrev" aria-label="Previous people">‹</button>
+      <div class="people-carousel" id="peopleCarousel"><div class="people-track" id="peopleTrack"></div></div>
+      <button class="people-nav next" id="peopleNext" aria-label="Next people">›</button>
+    </div>
+  </section>
+
+
+<!-- CONTACT -->
+<section id="contact" class="contact contact-modern"><div class="contact-inner">
+<div class="social-links">
+<a href="#" aria-label="YouTube" class="social-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/></svg></a>
+<a href="https://www.instagram.com/akarnusa_id?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==" aria-label="Instagram" class="social-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.05 2 .25 2.5.4a5 5 0 0 1 1.8 1.2 5 5 0 0 1 1.2 1.8c.15.5.35 1.3.4 2.5.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.05 1.2-.25 2-.4 2.5a5 5 0 0 1-1.2 1.8 5 5 0 0 1-1.8 1.2c-.5.15-1.3.35-2.5.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.05-2-.25-2.5-.4a5 5 0 0 1-1.8-1.2 5 5 0 0 1-1.2-1.8c-.15-.5-.35-1.3-.4-2.5-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.05-1.2.25-2 .4-2.5a5 5 0 0 1 1.2-1.8 5 5 0 0 1 1.8-1.2c.5-.15 1.3-.35 2.5-.4C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.15 0-3.52 0-4.76.07-1 .04-1.5.2-1.86.34a3.2 3.2 0 0 0-1.17.76 3.2 3.2 0 0 0-.76 1.17c-.14.36-.3.86-.34 1.86C3 9.24 3 9.6 3 12.76c0 3.15 0 3.52.07 4.76.04 1 .2 1.5.34 1.86.16.4.36.75.76 1.17.42.4.77.6 1.17.76.36.14.86.3 1.86.34 1.24.07 1.61.07 4.76.07 3.15 0 3.52 0 4.76-.07 1-.04 1.5-.2 1.86-.34a3.2 3.2 0 0 0 1.17-.76 3.2 3.2 0 0 0 .76-1.17c.14-.36.3-.86.34-1.86.07-1.24.07-1.61.07-4.76 0-3.15 0-3.52-.07-4.76-.04-1-.2-1.5-.34-1.86a3.2 3.2 0 0 0-.76-1.17 3.2 3.2 0 0 0-1.17-.76c-.36-.14-.86-.3-1.86-.34C15.52 4 15.15 4 12 4Zm0 3.5a5.3 5.3 0 1 1 0 10.6 5.3 5.3 0 0 1 0-10.6Zm0 1.8a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm5.5-2a1.24 1.24 0 1 1 0 2.48 1.24 1.24 0 0 1 0-2.48Z"/></svg></a>
+<a href="#" aria-label="TikTok" class="social-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M16.6 2h-3.3v13.9a3 3 0 1 1-2.2-2.9V9.6a6.2 6.2 0 1 0 5.5 6.2V8.4a8.3 8.3 0 0 0 4.9 1.6V6.7a5 5 0 0 1-4.9-4.7Z"/></svg></a>
+<a href="#" aria-label="LinkedIn" class="social-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.26 2.37 4.26 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+<a href="#" aria-label="WhatsApp" class="social-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.8.47 3.45 1.3 4.9L2 22l5.32-1.4a9.9 9.9 0 0 0 4.72 1.2h.01c5.46 0 9.9-4.45 9.9-9.9C21.96 6.45 17.5 2 12.04 2Zm5.8 14.1c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.1.11-1.79-.11a17.2 17.2 0 0 1-1.62-.6c-2.86-1.24-4.72-4.13-4.86-4.32-.14-.2-1.16-1.55-1.16-2.96s.72-2.1.98-2.38c.24-.28.53-.35.7-.35s.35 0 .5.01c.16.01.38-.06.6.45.24.56.8 1.94.87 2.08.07.14.12.3.02.5-.1.19-.15.3-.3.47-.15.16-.31.36-.44.49-.15.14-.3.3-.13.6.16.28.72 1.2 1.56 1.94 1.07.95 1.98 1.24 2.27 1.38.29.14.46.12.63-.07.17-.2.72-.84.91-1.13.19-.28.38-.24.63-.14.26.1 1.63.77 1.91.9.28.15.47.22.53.34.07.13.07.72-.17 1.4Z"/></svg></a>
+</div></div></section>
+<footer>© 2026 Akar Nusa</footer>
+<script>
+    (function() {
+      "use strict";
+
+      // ---------- NAVBAR ----------
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        navbar.classList.toggle("scrolled", window.scrollY > 80);
+      });
+
+      // ---------- SCROLL PROGRESS + BACK TO TOP ----------
+      const scrollProgressBar = document.getElementById("scrollProgressBar");
+      const backToTopBtn = document.getElementById("backToTop");
+      function updateScrollAids() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        if (scrollProgressBar) scrollProgressBar.style.width = progress + "%";
+        if (backToTopBtn) backToTopBtn.classList.toggle("is-visible", scrollTop > window.innerHeight * 0.6);
+      }
+      window.addEventListener("scroll", updateScrollAids, { passive: true });
+      updateScrollAids();
+      if (backToTopBtn) {
+        backToTopBtn.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+
+      // ---------- HERO VIDEO + MUSIC (header only) ----------
+      const heroEl = document.querySelector(".hero");
+      const heroVideo = document.querySelector(".hero-video");
+      const heroMusic = document.getElementById("heroMusic");
+      const MUSIC_MAX_VOLUME = 0.6;
+      let musicStarted = false;
+      let fadeTimer = null;
+      let coverflowInterval;
+
+      function clearFade() {
+        if (fadeTimer) { clearInterval(fadeTimer); fadeTimer = null; }
+      }
+      function fadeMusicTo(target, onDone) {
+        if (!heroMusic) return;
+        clearFade();
+        const step = 0.05;
+        fadeTimer = setInterval(() => {
+          if (heroMusic.volume < target) {
+            heroMusic.volume = Math.min(heroMusic.volume + step, target);
+          } else if (heroMusic.volume > target) {
+            heroMusic.volume = Math.max(heroMusic.volume - step, target);
+          }
+          if (Math.abs(heroMusic.volume - target) < 0.001) {
+            heroMusic.volume = target;
+            clearFade();
+            if (onDone) onDone();
+          }
+        }, 60);
+      }
+      function startMusic() {
+        if (musicStarted || !heroMusic) return;
+        musicStarted = true;
+        heroMusic.volume = 0;
+        const playPromise = heroMusic.play();
+        if (playPromise && playPromise.then) {
+          playPromise.then(() => fadeMusicTo(MUSIC_MAX_VOLUME)).catch(() => { musicStarted = false; });
+        } else {
+          fadeMusicTo(MUSIC_MAX_VOLUME);
+        }
+      }
+      // Browsers require a user gesture before audio can play with sound,
+      // so start it on the first scroll/click/tap while the header is visible.
+      ["scroll", "click", "keydown", "touchstart"].forEach(evt => {
+        window.addEventListener(evt, () => {
+          if (window.scrollY < window.innerHeight) startMusic();
+        }, { once: true, passive: true });
+      });
+
+      // As soon as the header scrolls out of view: fade the music out, pause
+      // it, and pause the video so nothing plays or shows below the header.
+      // Scrolling back up resumes both.
+      const heroObserver = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          if (heroVideo && heroVideo.paused) heroVideo.play().catch(() => {});
+          if (musicStarted && heroMusic) {
+            if (heroMusic.paused) heroMusic.play().catch(() => {});
+            fadeMusicTo(MUSIC_MAX_VOLUME);
+          }
+        } else {
+          if (heroVideo) heroVideo.pause();
+          if (musicStarted && heroMusic && !heroMusic.paused) {
+            fadeMusicTo(0, () => heroMusic.pause());
+          }
+        }
+      }, { threshold: 0 });
+      if (heroEl) heroObserver.observe(heroEl);
+
+      // While the header itself is on screen, fade the music down a little
+      // as you scroll through it, and darken the overlay.
+      function updateHeroOnScroll() {
+        const heroHeight = window.innerHeight;
+        const progress = Math.min(Math.max(window.scrollY / heroHeight, 0), 1);
+        const overlay = heroEl ? heroEl.querySelector(".overlay") : null;
+        if (overlay) overlay.style.background = `rgba(0,0,0,${progress * 0.5})`;
+      }
+      window.addEventListener("scroll", updateHeroOnScroll, { passive: true });
+      updateHeroOnScroll();
+
+      // ---------- COVERFLOW ----------
+      const cards = document.querySelectorAll(".coverflow .card");
+      const titleEl = document.getElementById("activity-title");
+      const descEl = document.getElementById("activity-desc");
+      let currentCard = 0;
+
+    function updateCarousel() {
+     const total = cards.length;
+
+     cards.forEach(c => {
+      c.classList.remove(
+      "active",
+      "left",
+      "right",
+      "hide-left",
+      "hide-right"
+    );
+  });
+
+  const left = (currentCard - 1 + total) % total;
+  const right = (currentCard + 1) % total;
+
+  // Card tengah
+  cards[currentCard].classList.add("active");
+
+  // Card kiri dan kanan
+  cards[left].classList.add("left");
+  cards[right].classList.add("right");
+
+  // Nama dan deskripsi
+  titleEl.textContent = cards[currentCard].dataset.title;
+  descEl.textContent = cards[currentCard].dataset.short;
+}
+      updateCarousel();
+      function nextCard() {
+      currentCard = (currentCard + 1) % cards.length;
+       updateCarousel();
+       }
+
+coverflowInterval = setInterval(nextCard, 3000);
+
+      // ---------- OVERLAY ----------
+      const overlay = document.getElementById("activityOverlay");
+      const closeBtn = document.getElementById("closeOverlay");
+      const overlayTitle = document.getElementById("overlayTitle");
+      const overlayDesc = document.getElementById("overlayDescription");
+      const overlayMainImage = document.getElementById("overlayMainImage");
+      const overlayList = document.getElementById("overlayList");
+      const thumbnailContainer = document.getElementById("thumbnailContainer");
+
+      let currentImages = [];
+      let currentImageIndex = 0;
+      let galleryTimer;
+
+      function buildThumbnails() {
+        thumbnailContainer.innerHTML = "";
+        currentImages.forEach((img, idx) => {
+          const thumb = document.createElement("img");
+          thumb.src = img;
+          if (idx === 0) thumb.classList.add("active");
+          thumb.addEventListener("click", () => changeImage(idx));
+          thumbnailContainer.appendChild(thumb);
+        });
+      }
+
+      function changeImage(index) {
+        currentImageIndex = index;
+        overlayMainImage.classList.add("change");
+        setTimeout(() => {
+          overlayMainImage.src = currentImages[index];
+          overlayMainImage.classList.remove("change");
+        }, 180);
+
+        document.querySelectorAll("#thumbnailContainer img").forEach((thumb, i) => {
+          thumb.classList.toggle("active", i === index);
+        });
+      }
+
+      let activityOpenedFromDepartment = false;
+
+      function openOverlay(card) {
+        const departmentModal = document.getElementById("departmentModal");
+        activityOpenedFromDepartment = !!departmentModal?.classList.contains("active");
+        // Hide the department popup while the activity popup is open, instead of
+        // stacking one popup on top of the other (which looked like a double overlay).
+        if (activityOpenedFromDepartment) {
+          departmentModal.classList.remove("active");
+          departmentModal.setAttribute("aria-hidden", "true");
+        }
+        overlay.classList.add("show");
+        overlayTitle.textContent = card.dataset.title;
+        overlayDesc.textContent = card.dataset.long;
+        document.getElementById("overlayLabel").textContent = card.dataset.label;
+
+        overlayList.innerHTML = "";
+        card.dataset.list.split("|").forEach(item => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          overlayList.appendChild(li);
+        });
+
+        currentImages = card.dataset.images.split(",");
+        currentImageIndex = 0;
+        overlayMainImage.src = currentImages[0];
+        buildThumbnails();
+        startGalleryAutoPlay();
+      }
+
+      function closeActivityOverlay() {
+        overlay.classList.remove("show");
+        clearInterval(galleryTimer);
+        // If the activity popup was opened from a department popup,
+        // bring the department popup back when the activity popup closes.
+        if (activityOpenedFromDepartment) {
+          const departmentModal = document.getElementById("departmentModal");
+          departmentModal.classList.add("active");
+          departmentModal.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = "";
+        }
+        activityOpenedFromDepartment = false;
+      }
+
+      closeBtn.addEventListener("click", closeActivityOverlay);
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) closeActivityOverlay();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeActivityOverlay();
+      });
+
+      // Keyboard arrows
+      document.addEventListener("keydown", (e) => {
+        if (!overlay.classList.contains("show")) return;
+        if (e.key === "ArrowRight") {
+          e.preventDefault();
+          currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+          changeImage(currentImageIndex);
+        }
+        if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+          changeImage(currentImageIndex);
+        }
+      });
+
+      // Touch swipe
+      let startX = 0;
+      overlayMainImage.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+      });
+      overlayMainImage.addEventListener("touchend", (e) => {
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+        if (Math.abs(diff) < 50) return;
+        if (diff > 0) {
+          currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+        } else {
+          currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+        }
+        changeImage(currentImageIndex);
+      });
+
+      // Auto play gallery
+      function startGalleryAutoPlay() {
+        clearInterval(galleryTimer);
+        galleryTimer = setInterval(() => {
+          if (!overlay.classList.contains("show")) return;
+          currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+          changeImage(currentImageIndex);
+        }, 4000);
+      }
+
+      overlay.addEventListener("mouseenter", () => clearInterval(galleryTimer));
+      overlay.addEventListener("mouseleave", startGalleryAutoPlay);
+
+      // Card click
+      cards.forEach((card, index) => {
+  card.addEventListener("click", () => {
+
+  if (index !== currentCard) {
+    clearInterval(coverflowInterval);
+
+    currentCard = index;
+    updateCarousel();
+
+    coverflowInterval = setTimeout(() => {
+      coverflowInterval = setInterval(nextCard, 3000);
+    }, 200);
+
+    return;
+  }
+
+  openOverlay(card);
+});
+});
+/* =====================================================
+   DEPARTMENTS / FOUNDERS / PEOPLE
+===================================================== */
+const departmentData=[
+  {
+    name:"Main & Support",
+    cardImage:"foto.jpg", color:"department-card-pink",
+    category:"MAIN + SUPPORT",
+    description:"The core team handling strategy, partnerships, operations, coordination, website, digital tools, and technical support across Akar Nusa.",
+    activitiesKey:null,
+    leaders:[
+      {name:"Yesi",role:"MAIN LEADER",image:"Aknus_Main&Support/Yesi_President.jpeg",description:"Coordinates overall direction, partnerships, internal operations, website, and technical support across Akar Nusa."}
+    ],
+    members:[
+      {name:"Shasa",role:"Media",image:"Aknus_Main&Support/Shasa_Media.PNG"},
+      {name:"Anin",role:"Secretary",image:"Aknus_Main&Support/Anindya_Secretary.JPG"},
+      {name:"Putra",role:"Web Developer",image:"Aknus_Main&Support/Putra_Media.JPG"},
+      {name:"Naufal",role:"Video Editor",image:"Aknus_Main&Support/Naufal_Media.jpeg"}
+    ],
+    about:"Main & Support brings strategy, partnerships, operations, coordination, website, digital tools, and technical support together so every other department can work smoothly."
+  },
+  {
+    name:"GreenLeap",
+    cardImage:"IMG_8234.jpg", color:"department-card-green",
+    category:"GREENLEAP",
+    description:"Environmental education for young people through workshops, campaigns, school visits, and partnerships.",
+    activitiesKey:"greenleap",
+    leaders:[
+      {name:"Ghina",role:"PROJECT MANAGER",image:"Aknus_GreenLeap/Ghina_GreenLeap.JPG",description:"Leads the GreenLeap team and coordinates the people, ideas, and programs behind every environmental initiative."}
+    ],
+    members:[
+      {name:"Ahsan",role:"Curriculum Lead",image:"Aknus_GreenLeap/Ahsan_Greenleap.JPG"},
+      {name:"Khansa",role:"Curriculum Lead",image:"Aknus_GreenLeap/Khansa_GreenLeap.JPG"},
+      {name:"Gladys",role:"Course Facilitator",image:"Aknus_GreenLeap/Gladys_GreenLeap.png"}
+    ],
+    about:"GreenLeap focuses on creating environmental awareness and turning that awareness into concrete action through educational workshops, school visits, campaigns, and community initiatives."
+  },
+  {
+    name:"Akar NuCycle",
+    cardImage:"activity2.jpg", color:"department-card-blue",
+    category:"AKAR NUCYCLE",
+    description:"A waste-management initiative teaching communities how to sort, recycle, compost, and build sustainable habits.",
+    activitiesKey:"nucycle",
+    leaders:[
+      {name:"Arvin",role:"PROJECT LEADER",image:"Aknus_NuCycle/Arvin_NuCycle.JPG",description:"Coordinates the waste-management program and community activities."},
+      {name:"Aulia",role:"PROJECT LEADER",image:"Aknus_NuCycle/Aulia_NuCycle.JPG",description:"Supports planning, field implementation, and community education."}
+    ],
+    members:[
+      {name:"Dzaki",role:"Waste Management",image:"Aknus_NuCycle/Dzaki_NuCycle.JPG"},
+      {name:"Wilson",role:"Waste Process",image:"Aknus_NuCycle/Wilson_NuCycle.png"},
+      {name:"Kirana",role:"Waste Liason",image:"Aknus_NuCycle/Kirana_NuCycle.JPG"}
+    ],
+    about:"Akar NuCycle teaches communities about waste sorting, recycling, composting, and sustainable waste management so people can build habits that last."
+  },
+  {
+    name:"Akar NuAction",
+    cardImage:"nuaction.jpeg", color:"department-card-mint",
+    category:"AKAR NUACTION",
+    description:"Community environmental action powered by volunteers who restore real ecosystems through hands-on work.",
+    activitiesKey:"nuaction",
+    leaders:[
+      {name:"Cer",role:"PROJECT LEADER",image:"Aknus_NuAction/Cer_NuAction.JPG",description:"Coordinates volunteer-led environmental projects, from tree planting to river cleanups."}
+    ],
+    members:[
+      {name:"Hanuun",role:"Community Trainer",image:"Aknus_NuAction/Hanuun_NuAction.JPG"},
+      {name:"Arkaan",role:"Community Outreach",image:"Aknus_NuAction/Arkaan_NuAction.JPG"}
+    ],
+    about:"Akar NuAction invites volunteers to directly participate in restoring ecosystems through tree planting, river cleanups, and community service days."
+  },
+  {
+    name:"Akar NusaTales",
+    cardImage:"activity4.jpg", color:"department-card-rainbow",
+    category:"AKAR NUSATALES",
+    description:"Creative storytelling that spreads sustainability through media, stories, and educational content.",
+    activitiesKey:"nusatales",
+    leaders:[
+      {name:"Rayna",role:"PROJECT LEADER",image:"Aknus_NuTales/rayna_NuTales.jpg",description:"Leads creative direction and develops storytelling content that makes sustainability engaging."}
+    ],
+    members:[
+      {name:"Keanu",role:"Writer",image:"Aknus_NuTales/Keanu_NuTales.JPG"},
+      {name:"Naura",role:"Illustrator",image:"Aknus_NuTales/Naura_NuTales.JPG"}
+    ],
+    about:"Akar NusaTales inspires environmental awareness through storytelling, creative media, and educational content, turning big ideas into stories that are easy to relate to."
+  }
+];
+
+function personCard(p,c){return `<article class="${c}"><div class="person-photo"><img src="${p.image}" alt="${p.name}" loading="lazy"></div><div class="person-meta"><h4>${p.name}</h4><span>${p.role}</span></div></article>`;}
+
+function renderDepartments(){
+  const list=document.getElementById("departmentList");
+  list.innerHTML=departmentData.map((d,i)=>`
+    <article class="department-card ${d.color || ''}" role="button" tabindex="0" aria-label="Open ${d.name}" data-department-index="${i}">
+      <div class="department-card-inner">
+        <div class="department-card-front">
+          <div class="department-card-image">
+            <img src="${d.cardImage || d.members?.[0]?.image || 'foto.jpg'}" alt="${d.name}" loading="lazy">
+          </div>
+          <div class="department-card-info">
+            <h3>${d.name}</h3>
+            <p>${d.description}</p>
+          </div>
+        </div>
+        <div class="department-card-back">
+          <h3>${d.name}</h3>
+          <p>${d.description}</p>
+          <span class="department-card-click">EXPLORE DEPARTMENT →</span>
+        </div>
+      </div>
+    </article>
+  `).join("");
+  list.querySelectorAll(".department-card").forEach(card=>{
+    const index=Number(card.dataset.departmentIndex);
+    card.addEventListener("click",()=>openDepartmentModal(index));
+    card.addEventListener("keydown",e=>{
+      if(e.key==="Enter"||e.key===" "){e.preventDefault();openDepartmentModal(index);}
+    });
+  });
+}
+
+/* Convert the original activity cards from the coverflow into reusable popup cards. */
+function getActivityCardData(title){
+  const original=[...document.querySelectorAll(".coverflow .card")].find(c=>c.dataset.title===title);
+  return original || null;
+}
+
+function makeDepartmentActivityCard(originalCard){
+  const wrapper=document.createElement("article");
+  wrapper.className="department-program-card";
+  wrapper.innerHTML=`
+    <div class="department-program-image">
+      <img src="${originalCard.querySelector("img")?.src || originalCard.dataset.images.split(",")[0]}" alt="${originalCard.dataset.title}" loading="lazy">
+    </div>
+    <div class="department-program-info">
+      <h4>${originalCard.dataset.title}</h4>
+      <p>${originalCard.dataset.short}</p>
+      <span>VIEW ACTIVITY →</span>
+    </div>`;
+  wrapper.addEventListener("click",()=>openOverlay(originalCard));
+  return wrapper;
+}
+
+function openDepartmentModal(index){
+  const d=departmentData[index];
+  if(!d)return;
+  const modalEl=document.getElementById("departmentModal");
+  modalEl.className="department-modal"+(d.color?" "+d.color:"");
+  document.getElementById("departmentModalCategory").textContent=d.category;
+  document.getElementById("departmentModalName").textContent=d.name;
+  document.getElementById("departmentModalDescription").textContent=d.description;
+
+  const leaders=document.getElementById("departmentLeaderList");
+  leaders.innerHTML=d.leaders.map(l=>`<article class="department-leader-card"><div class="person-photo"><img src="${l.image}" alt="${l.name}" loading="lazy"></div><div class="person-meta"><span>${l.role}</span><h4>${l.name}</h4><p>${l.description}</p></div></article>`).join("");
+
+  const members=document.getElementById("departmentMemberList");
+  members.innerHTML=d.members.map(m=>personCard(m,"member-card")).join("");
+
+  const programList=document.getElementById("departmentProgramList");
+  const heading=document.getElementById("departmentProgramsHeading");
+  programList.innerHTML="";
+  heading.textContent="What We Do";
+
+  const activityTitles={
+    "GreenLeap":["GreenLeap","Tree Planting"],
+    "Akar NuCycle":["Akar NuCycle"],
+    "Akar NuAction":["Akar NuAction","Tree Planting"],
+    "Akar NusaTales":["Akar Nusa Tales"],
+    "Main & Support":[]
+  };
+  const titles=activityTitles[d.name]||[];
+  const originalCards=titles.map(getActivityCardData).filter(Boolean);
+  if(originalCards.length){
+    originalCards.forEach(card=>programList.appendChild(makeDepartmentActivityCard(card)));
+  }else{
+    programList.innerHTML='<p class="department-empty">Main & Support works across the organization in strategy, operations, coordination, partnerships, website, and technical support.</p>';
+  }
+
+  const modal=document.getElementById("departmentModal");
+  modal.classList.add("active");
+  modal.setAttribute("aria-hidden","false");
+  document.body.style.overflow="hidden";
+}
+
+window.openDepartmentModal = openDepartmentModal;
+
+function closeDepartmentModal(){
+  const modal=document.getElementById("departmentModal");
+  modal.classList.remove("active");
+  modal.setAttribute("aria-hidden","true");
+  document.body.style.overflow="";
+}
+
+window.closeDepartmentModal = closeDepartmentModal;
+
+function setupDepartmentModal(){
+  document.getElementById("departmentModalClose").addEventListener("click",closeDepartmentModal);
+  document.getElementById("departmentModalBackdrop").addEventListener("click",closeDepartmentModal);
+}
+
+
+/* =====================================================
+   FOUNDERS + EVERYONE WHO JOINED
+   ===================================================== */
+const founderData = [
+  {name:"Raisha Kiara Dewi",role:"FOUNDER",image:"Aknus_Founder/Raisha_Akarnusa.JPG"},
+  {name:"Aisyah",role:"COFOUNDER",image:"Aknus_Founder/Aisyah_Akarnusa.JPG"},
+  {name:"Azel",role:"COFOUNDER",image:"Aknus_Founder/Azel_Akarnusa.JPG"},
+  {name:"Assa",role:"COFOUNDER",image:"Aknus_Founder/Assa_Akarnusa.JPG"},
+  {name:"Alra",role:"COFOUNDER",image:"Aknus_Founder/Alra_Akarnusa.JPG"},
+  {name:"Acha",role:"COFOUNDER",image:"Aknus_Founder/Acha_NuAction.JPG"},
+  {name:"Rara",role:"COFOUNDER",image:"Aknus_Founder/Rara_Akarnusa.JPG"},
+  {name:"Founder 08",role:"COFOUNDER",image:"images/member2.jpg"}
+];
+
+const peopleData = [
+  {name:"Member 01",role:"AKAR NUSA",image:"images/member1.jpg"},
+  {name:"Member 02",role:"AKAR NUSA",image:"images/member2.jpg"},
+  {name:"Member 03",role:"AKAR NUSA",image:"images/member3.jpg"},
+  {name:"Member 04",role:"AKAR NUSA",image:"images/member4.jpg"},
+  {name:"Member 05",role:"AKAR NUSA",image:"images/member5.jpg"},
+  {name:"Member 06",role:"AKAR NUSA",image:"images/member6.jpg"},
+  {name:"Member 07",role:"AKAR NUSA",image:"images/member1.jpg"},
+  {name:"Member 08",role:"AKAR NUSA",image:"images/member2.jpg"},
+  {name:"Member 09",role:"AKAR NUSA",image:"images/member3.jpg"},
+  {name:"Member 10",role:"AKAR NUSA",image:"images/member4.jpg"},
+  {name:"Member 11",role:"AKAR NUSA",image:"images/member5.jpg"},
+  {name:"Member 12",role:"AKAR NUSA",image:"images/member6.jpg"}
+];
+
+function renderFounders(){
+  const grid=document.getElementById("founderGrid");
+  if(!grid) return;
+  grid.innerHTML=founderData.map(p=>personCard(p,"founder-card")).join("");
+}
+
+function renderPeople(){
+  const track=document.getElementById("peopleTrack");
+  if(!track) return;
+
+  // Duplicate the list once so the CSS animation can loop continuously.
+  // No hover pause: the carousel keeps moving even when the cursor is over it.
+  const doubled=[...peopleData,...peopleData];
+  track.innerHTML=doubled.map(p=>personCard(p,"people-card")).join("");
+  track.style.transform="translateX(0)";
+  track.style.transition="none";
+}
+
+
+renderDepartments();
+renderFounders();
+renderPeople();
+setupDepartmentModal();
+
+    document.addEventListener("keydown", e => { if(e.key === "Escape") closeDepartmentModal(); });
+
+    })();
+    
+const heroVideo = document.getElementById("heroVideo");
+
+if (heroVideo) {
+  // Start muted (guaranteed autoplay), then try to turn sound on right away.
+  heroVideo.muted = true;
+  heroVideo.volume = 1;
+
+  async function enableHeroSound() {
+    try {
+      heroVideo.muted = false;
+      heroVideo.dataset.soundEnabled = "true";
+      await heroVideo.play();
+      updateHeroAudio();
+      return true;
+    } catch (error) {
+      // Browser blocked sound: fall back to muted autoplay.
+      heroVideo.muted = true;
+      heroVideo.dataset.soundEnabled = "false";
+      heroVideo.play().catch(() => {});
+      return false;
+    }
+  }
+
+  // If the browser blocks sound, enable it on the visitor's first interaction.
+  const unlockEvents = ["pointerdown", "click", "keydown", "touchend"];
+  function unlockOnFirstInteraction() {
+    enableHeroSound().then((ok) => {
+      if (ok) {
+        unlockEvents.forEach((evt) =>
+          window.removeEventListener(evt, unlockOnFirstInteraction, true)
+        );
+      }
+    });
+  }
+
+  enableHeroSound().then((ok) => {
+    if (!ok) {
+      unlockEvents.forEach((evt) =>
+        window.addEventListener(evt, unlockOnFirstInteraction, true)
+      );
+    }
+  });
+
+  function updateHeroAudio() {
+    const hero = document.querySelector(".hero");
+    if (!hero) return;
+
+    const heroHeight = hero.offsetHeight;
+    const scrollY = window.scrollY;
+
+    // Volume fades as the page scrolls through the hero.
+    const progress = Math.min(
+      1,
+      Math.max(0, scrollY / heroHeight)
+    );
+
+    heroVideo.volume = 1 - progress;
+
+    // Unmute only after the user has enabled sound.
+    if (heroVideo.dataset.soundEnabled === "true") {
+      heroVideo.muted = progress >= 1;
+    }
+  }
+
+  // Enable sound after the user interacts with the video.
+  heroVideo.addEventListener("click", async () => {
+    try {
+      heroVideo.muted = false;
+      heroVideo.dataset.soundEnabled = "true";
+      await heroVideo.play();
+      updateHeroAudio();
+    } catch (error) {
+      console.log("Sound needs user interaction.");
+    }
+  });
+
+  window.addEventListener("scroll", updateHeroAudio, {
+    passive: true
+  });
+
+  updateHeroAudio();
+}
+
+
+
+  </script>
+</body>
+</html>
