@@ -4,14 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Akar Nusa – Nurturing the future</title>
-  <link rel="icon" type="image/png" href="bird.png" />
+  <link rel="icon" type="image/png" href="vector/bird.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Sanchez&family=Playfair+Display:wght@500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
+    /* ---------- FONT THEME ----------
+       Pilihan 1 (aktif): League Spartan + Sanchez
+       Pilihan 2: Playfair Display + Montserrat (ganti dua baris di bawah) */
+    :root {
+      --font-heading: 'League Spartan', Arial, sans-serif;
+      --font-body: 'Sanchez', Georgia, serif;
+      /* --font-heading: 'Playfair Display', Georgia, serif; */
+      /* --font-body: 'Montserrat', Arial, sans-serif; */
+    }
     /* ---------- RESET & BASE ---------- */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: var(--font-body);
       scroll-behavior: smooth;
     }
     body {
@@ -1624,7 +1636,7 @@
 .person-meta{padding:14px 15px 16px}
 .person-meta h4{font-size:16px;color:#1f3025;margin-bottom:5px}
 .person-meta span{font-size:11px;color:#788178}
-.founder-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px}
+.founder-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px}
 .founder-card .person-meta{padding:10px}
 .founder-card .person-meta h4{font-size:14px}
 .people-section{margin-top:20px}
@@ -1754,7 +1766,7 @@
 
 /* Founders: keep eight frames */
 .founders-section{margin-top:95px}
-.founder-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px;max-width:1180px;margin:0 auto}
+.founder-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px;max-width:1180px;margin:0 auto}
 .founder-card{border:1px solid #e1e6e1;background:#fff;overflow:hidden;border-radius:14px;box-shadow:0 8px 20px rgba(31,48,37,.08)}
 
 /* Everyone who joined: circular, smooth, continuous carousel */
@@ -1913,7 +1925,7 @@
   height: 20px !important;
   left: 0 !important;
   top: 3px !important;
-  background: url('bird.png') center/contain no-repeat !important;
+  background: url('vector/bird.png') center/contain no-repeat !important;
   color: transparent !important;
 }
 
@@ -2071,7 +2083,7 @@
     #f6f4ef 78%,
     #65806b 88%,
     #1f4332 95%,
-    #172b20 100%);
+    #1F3025 100%);
   isolation: isolate;
 }
 
@@ -2305,7 +2317,7 @@
 /* ---- dark "People Behind" department section ---- */
 .departments-modern.departments-dark{
   position: relative;
-  background: linear-gradient(180deg, #172b20 0%, #599c5d 100%);
+  background: linear-gradient(180deg, #1F3025 0%, #5F9763 100%);
   padding-top: 70px;
   overflow: hidden;
 }
@@ -2391,13 +2403,13 @@ footer {
    "People Behind Every Action" green (#17301f) leaves off.
 ===================================================== */
 .activities{
-  background: linear-gradient(180deg, #599c5d 0%, #9da63f 100%) !important;
+  background: linear-gradient(180deg, #5F9763 0%, #9CE1AD 100%) !important;
 }
 .founders-section{
-  background: linear-gradient(180deg, #9da63f 0%, #e8b140 100%);
+  background: linear-gradient(180deg, #9CE1AD 0%, #FCD0B8 100%);
 }
 .people-section{
-  background: linear-gradient(180deg, #e8b140 0%, #edc846 100%);
+  background: linear-gradient(180deg, #FCD0B8 0%, #F5CA74 70%, #EF8520 100%);
 }
 .contact-modern{
   background: #1f4332 !important;
@@ -2454,36 +2466,58 @@ footer {
   border-color: #eef4ef !important;
 }
 
-/* Text/UI contrast on the new dark/gold backgrounds */
-.activities .section-title h2,
-.activity-info h3{
+/* Text/UI contrast on the new gradient backgrounds */
+.activities .section-title h2{
   color: #ffffff !important;
 }
-.activities .section-title p,
-.activity-info p{
+.activity-info h3{
+  color: #1F6E43 !important;
+}
+.activities .section-title p{
   color: rgba(255,255,255,0.82) !important;
+}
+.activity-info p{
+  color: #1F4332 !important;
 }
 .founders-section .modern-section-heading > span,
 .people-section .modern-section-heading > span{
-  color: rgba(255,255,255,0.75) !important;
+  color: rgba(31,48,37,0.75) !important;
 }
 .founders-section .modern-section-heading h2,
 .people-section .modern-section-heading h2{
-  color: #ffffff !important;
+  color: #1F3025 !important;
 }
 .founders-section .modern-section-heading h2 em,
 .people-section .modern-section-heading h2 em{
-  color: #1f3025 !important;
+  color: #2F7D4F !important;
 }
 .founders-section .modern-section-heading p,
 .people-section .modern-section-heading p{
-  color: rgba(255,255,255,0.82) !important;
+  color: rgba(31,48,37,0.8) !important;
 }
 .people-card .person-meta h4{
-  color: #ffffff !important;
+  color: #ED1651 !important;
 }
 .people-card .person-meta span{
-  color: rgba(255,255,255,0.78) !important;
+  color: rgba(31,48,37,0.8) !important;
+}
+
+/* ---------- Fonts: headings use the heading font ---------- */
+h1, h2, h3, h4, h5, h6,
+nav ul li a,
+.contact-cta,
+.program-label,
+.department-card-click,
+.department-open-label{
+  font-family: var(--font-heading);
+}
+
+/* ---------- About + IB Award: justified text ---------- */
+.about-scrapbook .scrap-card p{
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 </style>
 
@@ -2491,7 +2525,7 @@ footer {
 <body>
   <!-- PAGE LOADER -->
   <div id="pageLoader" class="page-loader">
-    <img src="Group 28.png" alt="Akar Nusa" class="page-loader-logo" />
+    <img src="vector/Group 28.png" alt="Akar Nusa" class="page-loader-logo" />
   </div>
   <script>
     window.addEventListener("load", function () {
@@ -2507,7 +2541,7 @@ footer {
   </script>
   <!-- NAVBAR -->
   <nav id="navbar">
-    <div class="logo"><a href="#"><img src="Group 28.png" alt="Akar Nusa Logo" /></a></div>
+    <div class="logo"><a href="#"><img src="vector/Group 28.png" alt="Akar Nusa Logo" /></a></div>
     <ul>
       <li><a href="#">Home</a></li>
       <li><a href="#about">About</a></li>
@@ -2521,7 +2555,7 @@ footer {
   <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar" id="scrollProgressBar"></div></div>
 
   <!-- BACK TO TOP -->
-  <button id="backToTop" class="back-to-top" aria-label="Back to top"><img src="bird.png" alt="" /></button>
+  <button id="backToTop" class="back-to-top" aria-label="Back to top"><img src="vector/bird.png" alt="" /></button>
 
   <!-- HERO -->
   <header class="hero">
@@ -2533,9 +2567,9 @@ footer {
       loop
       playsinline
       preload="auto"
-      poster="GYAF2026_V4_WebBanner.png"
+      poster="banner/GYAF2026_V4_WebBanner.png"
     >
-      <source src="./video%20fix.mp4" type="video/mp4">
+      <source src="./banner/video%20fix.mp4" type="video/mp4">
       Your browser does not support HTML video.
     </video>
   </header>
@@ -2545,13 +2579,13 @@ footer {
   <section id="about" class="about about-scrapbook">
 
     <!-- decorative scrapbook shapes (real art assets) -->
-    <div class="scrap-deco deco-teal-blob" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 147.png" alt=""></div>
-    <div class="scrap-deco deco-blue-burst" aria-hidden="true"><img loading="lazy" decoding="async" src="Star 7.png" alt=""></div>
-    <div class="scrap-deco deco-olive-blob" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 148.png" alt=""></div>
-    <div class="scrap-deco deco-spiral" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 156.png" alt=""></div>
-    <div class="scrap-deco deco-drips" aria-hidden="true"><img loading="lazy" decoding="async" src="Group 71.png" alt=""></div>
-    <div class="scrap-deco deco-star-left" aria-hidden="true"><img loading="lazy" decoding="async" src="Star 6.png" alt=""></div>
-    <div class="scrap-deco deco-star-right" aria-hidden="true"><img loading="lazy" decoding="async" src="Star 6.png" alt=""></div>
+    <div class="scrap-deco deco-teal-blob" aria-hidden="true"><img loading="lazy" decoding="async" src="vector/Vector 147.png" alt=""></div>
+    <div class="scrap-deco deco-blue-burst" aria-hidden="true"><img loading="lazy" decoding="async" src="vector/Star 7.png" alt=""></div>
+    <div class="scrap-deco deco-olive-blob" aria-hidden="true"><img loading="lazy" decoding="async" src="vector/Vector 148.png" alt=""></div>
+    <div class="scrap-deco deco-spiral" aria-hidden="true"><img loading="lazy" decoding="async" src="vector/Vector 156.png" alt=""></div>
+    <div class="scrap-deco deco-drips" aria-hidden="true"><img loading="lazy" decoding="async" src="vector/Group 71.png" alt=""></div>
+    <div class="scrap-deco deco-star-left" aria-hidden="true"><img loading="lazy" decoding="async" src="vector/Star 6.png" alt=""></div>
+    <div class="scrap-deco deco-star-right" aria-hidden="true"><img loading="lazy" decoding="async" src="vector/Star 6.png" alt=""></div>
 
     <div class="scrap-card card-what">
       <h2>What is AkarNusa ?</h2>
@@ -2579,7 +2613,7 @@ footer {
      DEPARTMENT SECTION
 ===================================================== -->
 <section id="departments" class="departments-modern departments-dark">
-  <div class="scrap-deco deco-dept-leaf" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 146.png" alt=""></div>
+  <div class="scrap-deco deco-dept-leaf" aria-hidden="true"><img loading="lazy" decoding="async" src="vector/Vector 146.png" alt=""></div>
   <div class="modern-section-heading heading-glow-box">
     <div class="heading-glow-inner">
       <h2>The People Behind<br><em>Every Action.</em></h2>
@@ -2628,12 +2662,12 @@ footer {
 
 <!-- ACTIVITIES -->
   <section id="activities" class="activities">
-    <div class="scrap-deco deco-leaf-left" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 101.png" alt=""></div>
-    <div class="scrap-deco deco-flower-right" aria-hidden="true"><img loading="lazy" decoding="async" src="Group 64.png" alt=""></div>
-    <div class="scrap-deco deco-carousel-left" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 139.png" alt=""></div>
-    <div class="scrap-deco deco-carousel-left-2" aria-hidden="true"><img loading="lazy" decoding="async" src="Ellipse 32.png" alt=""></div>
-    <div class="scrap-deco deco-carousel-right" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 107.png" alt=""></div>
-    <div class="scrap-deco deco-carousel-right-2" aria-hidden="true"><img loading="lazy" decoding="async" src="Group 72.png" alt=""></div>
+    <div class="scrap-deco deco-leaf-left" aria-hidden="true"><img loading="lazy" decoding="async" src="vector/Vector 101.png" alt=""></div>
+    <div class="scrap-deco deco-flower-right" aria-hidden="true"><img loading="lazy" decoding="async" src="vector/Group 64.png" alt=""></div>
+    <div class="scrap-deco deco-carousel-left" aria-hidden="true"><img loading="lazy" decoding="async" src="vector/Vector 139.png" alt=""></div>
+    <div class="scrap-deco deco-carousel-left-2" aria-hidden="true"><img loading="lazy" decoding="async" src="vector/Ellipse 32.png" alt=""></div>
+    <div class="scrap-deco deco-carousel-right" aria-hidden="true"><img loading="lazy" decoding="async" src="vector/Vector 107.png" alt=""></div>
+    <div class="scrap-deco deco-carousel-right-2" aria-hidden="true"><img loading="lazy" decoding="async" src="vector/Group 72.png" alt=""></div>
     <div class="section-title">
       <h2>Our Activities</h2>
       <p>Growing together through meaningful actions.</p>
@@ -2674,8 +2708,8 @@ footer {
         data-category="Community"
         data-participants="150+"
         data-list="Tree Planting|River Cleanup|Volunteer Day|Community Service"
-        data-images="nuaction.jpeg,BF792313-94DB-49D3-AFB0-C859D0E57840.jpg,DSC09325.JPG,IMG_6298.jpg">
-        <img src="nuaction.jpeg" alt="Akar NuAction" loading="lazy" decoding="async" />
+        data-images="vector/nuaction.jpeg,BF792313-94DB-49D3-AFB0-C859D0E57840.jpg,DSC09325.JPG,IMG_6298.jpg">
+        <img src="vector/nuaction.jpeg" alt="Akar NuAction" loading="lazy" decoding="async" />
       </div>
       <!-- TALES -->
       <div class="card"
@@ -2746,8 +2780,8 @@ footer {
     </div>
   </div>
   <section class="founders-section">
-    <div class="scrap-deco deco-purple-triangle" aria-hidden="true"><img loading="lazy" decoding="async" src="Polygon 1.png" alt=""></div>
-    <div class="scrap-deco deco-orange-rings" aria-hidden="true"><img loading="lazy" decoding="async" src="Group 79.png" alt=""></div>
+    <div class="scrap-deco deco-purple-triangle" aria-hidden="true"><img loading="lazy" decoding="async" src="vector/Polygon 1.png" alt=""></div>
+    <div class="scrap-deco deco-orange-rings" aria-hidden="true"><img loading="lazy" decoding="async" src="vector/Group 79.png" alt=""></div>
     <div class="modern-section-heading compact">
       <h2>The Roots of <em>Akar Nusa.</em></h2>
     </div>
@@ -2755,8 +2789,8 @@ footer {
   </section>
 
   <section class="people-section">
-    <div class="scrap-deco deco-pink-ribbon" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 118.png" alt=""></div>
-    <div class="scrap-deco deco-orange-rings-2" aria-hidden="true"><img loading="lazy" decoding="async" src="Subtract-1.png" alt=""></div>
+    <div class="scrap-deco deco-pink-ribbon" aria-hidden="true"><img loading="lazy" decoding="async" src="vector/Vector 118.png" alt=""></div>
+    <div class="scrap-deco deco-orange-rings-2" aria-hidden="true"><img loading="lazy" decoding="async" src="vector/Subtract-1.png" alt=""></div>
     <div class="modern-section-heading compact">
       <span>EVERYONE WHO JOINED</span>
       <h2>Akar Nusa <em>People.</em></h2>
@@ -3138,7 +3172,7 @@ const departmentData=[
   },
   {
     name:"Akar NuAction",
-    cardImage:"nuaction.jpeg", color:"department-card-mint",
+    cardImage:"vector/nuaction.jpeg", color:"department-card-mint",
     category:"AKAR NUACTION",
     description:"Community environmental action powered by volunteers who restore real ecosystems through hands-on work.",
     activitiesKey:"nuaction",
@@ -3288,11 +3322,10 @@ const founderData = [
   {name:"Raisha Kiara Dewi",role:"FOUNDER",image:"Aknus_Founder/Raisha_Akarnusa.JPG"},
   {name:"Aisyah",role:"COFOUNDER",image:"Aknus_Founder/Aisyah_Akarnusa.JPG"},
   {name:"Azel",role:"COFOUNDER",image:"Aknus_Founder/Azel_Akarnusa.JPG"},
-  {name:"Assa",role:"COFOUNDER",image:"Aknus_Founder/Assa_Akarnusa.JPG"},
+  {name:"Naila",role:"COFOUNDER",image:"Aknus_Founder/Naila_AkarNusa.jpg"},
   {name:"Alra",role:"COFOUNDER",image:"Aknus_Founder/Alra_Akarnusa.JPG"},
   {name:"Acha",role:"COFOUNDER",image:"Aknus_Founder/Acha_NuAction.JPG"},
-  {name:"Rara",role:"COFOUNDER",image:"Aknus_Founder/Rara_Akarnusa.JPG"},
-  {name:"Founder 08",role:"COFOUNDER",image:"images/member2.jpg"}
+  {name:"Rara",role:"COFOUNDER",image:"Aknus_Founder/Rara_Akarnusa.JPG"}
 ];
 
 const peopleData = [
